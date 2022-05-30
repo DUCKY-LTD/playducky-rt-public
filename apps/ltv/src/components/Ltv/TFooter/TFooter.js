@@ -1,5 +1,5 @@
 import React from "react";
-import { dataHandler } from "../../../utils/dataHandler";
+import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 function TFooter({ sortedData }) {
   const summary = dataHandler.getWeightedAverage(sortedData);

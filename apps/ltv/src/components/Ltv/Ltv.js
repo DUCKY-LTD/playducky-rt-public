@@ -5,8 +5,8 @@ import FilterBar from "./FilterBar/FilterBar";
 import THeader from "./Theader/THeader";
 import TBody from "./TBody/TBody";
 import TFooter from "./TFooter/TFooter";
-import { apiLtv } from "../../api/api";
-import { dataHandler } from "../../utils/dataHandler";
+import {apiLtv} from "shared-lib/src/api/api";
+import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 function Ltv() {
   const [allData, setAllData] = useState([]);
