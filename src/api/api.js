@@ -14,6 +14,8 @@ const instance = axios.create({
 //   to: moment().subtract(2, "days").format("YYYY-MM-DD"),
 //   country: "US",
 // };
+const test = window.authHash;
+console.log(test);
 
 export const apiLtv = {
   getLtv(from, to) {

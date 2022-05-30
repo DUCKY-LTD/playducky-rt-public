@@ -8,7 +8,7 @@ import TFooter from "./TFooter/TFooter";
 import { apiLtv } from "../../api/api";
 import { dataHandler } from "../../utils/dataHandler";
 
-function TableApp() {
+function Ltv() {
   const [allData, setAllData] = useState([]);
   const [dateRange, setdateRange] = useState({
     from: moment().subtract(8, "days").format("YYYY-MM-DD"),
@@ -50,4 +50,4 @@ function TableApp() {
   );
 }
 
-export default TableApp;
+export default Ltv;
