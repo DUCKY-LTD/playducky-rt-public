@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Table from "./Table";
+import TableApp from "./components/TableApp/TableApp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Table />
+    <TableApp />
   </React.StrictMode>
 );

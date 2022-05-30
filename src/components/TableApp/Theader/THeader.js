@@ -1,6 +1,6 @@
 import React from "react";
 
-function THead() {
+function THeader() {
   return (
     <thead>
       <tr>
@@ -18,4 +18,4 @@ function THead() {
   );
 }
 
-export default THead;
+export default THeader;
