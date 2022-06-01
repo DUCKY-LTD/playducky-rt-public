@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./TableApp.css";
+import "./Ltv.css";
 import moment from "moment";
 import FilterBar from "./FilterBar/FilterBar";
 import THeader from "./Theader/THeader";
@@ -10,16 +10,16 @@ import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 function Ltv() {
   const [allData, setAllData] = useState([]);
-  const [dateRange, setdateRange] = useState({
+  const [dateRange, setDateRange] = useState({
     from: moment().subtract(8, "days").format("YYYY-MM-DD"),
     to: moment().subtract(2, "days").format("YYYY-MM-DD"),
   });
 
   const dateRangeHandler = (from, to) => {
-    console.log("from: " + from, "to: " + to);
-    setdateRange({
-      from: moment().subtract(from, "days").format("YYYY-MM-DD"),
-      to: moment().subtract(to, "days").format("YYYY-MM-DD"),
+    // console.log("from: " + from, "to: " + to);
+    setDateRange({
+      from: from,
+      to: to,
     });
   };
 
