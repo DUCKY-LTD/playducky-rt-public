@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FilterBar.module.css";
-import DateRangePicker from "../DateRangePicker/DateRangePicker";
+import DateRangePicker from "./DateRangePicker/DateRangePicker";
 
 function FilterBar({ dateRangeHandler }) {
   return (
