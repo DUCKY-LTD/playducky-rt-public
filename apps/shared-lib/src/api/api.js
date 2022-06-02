@@ -1,5 +1,4 @@
 import axios from "axios";
-import moment from "moment";
 
 const instance = axios.create({
   baseURL: "https://api.playducky.com/node/",
@@ -9,19 +8,16 @@ const instance = axios.create({
   },
 });
 
-// const params = {
-//   from: moment().subtract(8, "days").format("YYYY-MM-DD"),
-//   to: moment().subtract(2, "days").format("YYYY-MM-DD"),
-//   country: "US",
-// };
+
 const test = window.authHash;
 console.log(test);
 
 export const apiLtv = {
-  getLtv(from, to) {
+  getLtv(from, to, country) {
+    // console.log('FROM:__'+from, ' TO:___'+to, ' Country:____'+country)
     return instance
       .get(
-        `ltv_by_app?app_id=ru.IJunior.MonsterMergeRun&app_id=io.hyperhug.mr.slice&from=${from}&to=${to}`
+        `ltv_by_app?app_id=ru.IJunior.MonsterMergeRun&app_id=io.hyperhug.mr.slice&from=${from}&to=${to}&country=${country}`
       )
       .then((response) => response.data)
       .catch((error) => {

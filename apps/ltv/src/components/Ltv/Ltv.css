@@ -1,9 +1,9 @@
 
 .container {
   width: 1200px;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid red;
+  /*margin: 20px;*/
+  /*padding: 20px;*/
+  /*border: 1px solid red;*/
 }
 
 table {
@@ -48,4 +48,11 @@ tfoot {
 
 .cell {
   height: 55px;
+  background-color: #ffffff;
+}
+
+.react-datepicker {
+  position: fixed !important;
+  left: 300px;
+  top: 90px;
 }

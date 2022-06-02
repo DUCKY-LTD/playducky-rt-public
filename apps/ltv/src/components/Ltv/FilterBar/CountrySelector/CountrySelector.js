@@ -1,18 +1,45 @@
-import React, { useState, useMemo } from "react";
-import Select from "react-select";
-import countries from "../../../../shared/countries.json";
-console.log(countries);
+import React, {useState, useEffect} from "react";
+import Select from 'react-select'
+import {countries} from "shared-lib/src/shared/countries";
 
-function CountrySelector() {
-    const [value, setValue] = useState("");
-    // const options = useMemo(() => countryList().getData(), []);
+const options = countries.map((el)=>{
+    return {'value':el, 'label':el}
+})
 
-    // const changeHandler = (value) => {
-    //   setValue(value);
-    // };
+const selectorStyles = {
+    control: (styles) => ({ ...styles, backgroundColor: "#FFF",
+        cursor:  "pointer",
+        color:"red",
+        border: "1px solid #EAECEE",
+        fontSize: '12px'}),
+    option: (styles) => {
+        return {
+            ...styles,
+            backgroundColor:  "#FFF",
+            color: "#6E6C6C",
+            cursor:  "pointer",
+            fontSize: '12px'
+        };
+    }
+};
 
-    // return <Select options={options} value={value} onChange={changeHandler} />;
-    return <div>1</div>;
+function CountrySelector({countryHandler}) {
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    useEffect(()=>{
+        if(selectedOption){
+            countryHandler(selectedOption.value)
+        }
+    }, [selectedOption])
+
+    return <div style={{paddingRight:'8px'}}>
+        <Select
+            defaultValue={options[229]}
+            onChange={setSelectedOption}
+            options={options}
+            styles={selectorStyles}
+        />
+    </div>;
 }
 
 export default CountrySelector;
