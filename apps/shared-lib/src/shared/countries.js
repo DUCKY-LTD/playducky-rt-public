@@ -1,4 +1,4 @@
-["AD",
+export const countries = ["AD",
 "AE",
 "AF",
 "AG",
@@ -244,5 +244,5 @@
 "YT",
 "ZA",
 "ZM",
-"ZW",
+"ZW"
 ]

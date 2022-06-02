@@ -5,6 +5,7 @@ import FilterBar from "./FilterBar/FilterBar";
 import THeader from "./Theader/THeader";
 import TBody from "./TBody/TBody";
 import TFooter from "./TFooter/TFooter";
+import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
 import {apiLtv} from "shared-lib/src/api/api";
 import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
@@ -14,21 +15,26 @@ function Ltv() {
     from: moment().subtract(8, "days").format("YYYY-MM-DD"),
     to: moment().subtract(2, "days").format("YYYY-MM-DD"),
   });
+  const [country, setCountry]= useState('US');
 
   const dateRangeHandler = (from, to) => {
-    // console.log("from: " + from, "to: " + to);
     setDateRange({
       from: from,
       to: to,
     });
   };
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    apiLtv.getLtv(dateRange.from, dateRange.to).then((response) => {
-      const data = response;
+    setIsLoading(true);
+    apiLtv.getLtv(dateRange.from, dateRange.to, country).then((response) => {
+      let data;
+      data = response;
       setAllData(data);
+      setIsLoading(false)
     });
-  }, [dateRange]);
+  }, [dateRange,country]);
 
   const [sortedData, setSortedData] = useState([]);
 
@@ -38,14 +44,19 @@ function Ltv() {
     setSortedData(result);
   }, [allData]);
 
+
+
   return (
     <div className="container">
-      <FilterBar dateRangeHandler={dateRangeHandler} />
-      <table className="table">
-        <THeader />
-        <TBody sortedData={sortedData} />
-        <TFooter sortedData={sortedData} />
-      </table>
+      <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
+      {isLoading ? <LoadingSpinner/> :
+      (sortedData.length === 0) ? <h1 style={{textAlign: "center"}}>Data not available</h1> :
+          <table className="table">
+            <THeader/>
+            <TBody sortedData={sortedData}/>
+            <TFooter sortedData={sortedData}/>
+          </table>
+      }
     </div>
   );
 }
