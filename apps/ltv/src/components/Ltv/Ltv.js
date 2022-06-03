@@ -51,7 +51,7 @@ function Ltv() {
       <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
       {isLoading ? <LoadingSpinner/> :
       (sortedData.length === 0) ? <h1 style={{textAlign: "center"}}>Data not available</h1> :
-          <table className="table">
+          <table className="table__dash">
             <THeader/>
             <TBody sortedData={sortedData}/>
             <TFooter sortedData={sortedData}/>

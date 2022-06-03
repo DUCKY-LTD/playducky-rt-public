@@ -1,0 +1,15 @@
+.thead {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px;
+    background-color: #F5F7F9;
+    color: #70767E;
+    text-align: left;
+}
+
+.th{
+    padding-left: 5px;
+    border: 1px solid #EAECEE;
+    vertical-align: middle;
+}
