@@ -1,15 +1,13 @@
 import React from "react";
 import styles from './TBody.module.css'
 
-console.log(styles)
-
 function TBody({ sortedData }) {
   return (
     <tbody>
       {sortedData.map((el, idx) => {
         return (
           <tr key={el.install_day}>
-            <td className={styles.cell}>
+            <td style={{width:"220px"}} className={styles.cell}>
               {el.install_day}
             </td>
             <td className={styles.cell}>{el.cpi}</td>

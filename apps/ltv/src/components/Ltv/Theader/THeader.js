@@ -5,7 +5,7 @@ function THeader() {
   return (
     <thead className={styles.thead}>
       <tr>
-        <th className={styles.th}>Install Day</th>
+        <th style={{width:"224px"}} className={styles.th}>Install Day</th>
         <th className={styles.th}>CPI</th>
         <th className={styles.th}>Installs</th>
         <th className={styles.th}>Day 0</th>

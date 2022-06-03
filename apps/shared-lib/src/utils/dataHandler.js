@@ -1,5 +1,6 @@
 export const dataHandler = {
   getSortedData(data) {
+    console.log(data);
 
     let badData = false;
 

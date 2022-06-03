@@ -7,15 +7,19 @@
 }
 
 .table__dash {
-   /*table-layout: fixed;*/
+  /*table-layout: fixed;*/
   width: 100%;
   border-collapse: collapse;
-  /*min-height: 300px;*/
-  /*overflow-x: auto;*/
+}
+
+.overflow__container{
+  height: 450px;
+  /*outline: 1px solid red;*/
+  overflow: auto;
 }
 
 .react-datepicker {
   position: fixed !important;
-  left: 260px;
-  top: 50px;
+  left: 540px;
+  top: 540px;
 }
