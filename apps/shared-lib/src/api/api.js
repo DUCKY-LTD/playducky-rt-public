@@ -9,8 +9,15 @@ const instance = axios.create({
 });
 
 
-const test = window.authHash;
-console.log(test);
+const authHash = window.authHash;
+const userId = window.userId;
+const gPBundleId = window.gPBundleId;
+const iOsAppId = window.iOsAppId;
+
+console.log(authHash);
+console.log(userId);
+console.log(gPBundleId);
+console.log(iOsAppId);
 
 export const apiLtv = {
   getLtv(from, to, country) {
