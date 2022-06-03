@@ -13,10 +13,10 @@
 
 .th{
     padding-left: 5px;
-    /*border: 1px solid #EAECEE;*/
     vertical-align: middle;
+    border-left: 1px solid #EAECEE;
 }
 
-.th:not(:last-child){
+.th:last-child{
     border-right: 1px solid #EAECEE;
 }
