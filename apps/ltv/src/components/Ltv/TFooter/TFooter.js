@@ -8,14 +8,14 @@ function TFooter({ sortedData }) {
   return (
     <tfoot className={styles.tfoot}>
       <tr>
-        <td colSpan={2} className={styles.tfoot}></td>
-        <td className={styles.tfoot}>{summary.installs}</td>
-        <td className={styles.tfoot}>{summary.wA.d0}</td>
-        <td className={styles.tfoot}>{summary.wA.d3}</td>
-        <td className={styles.tfoot}>{summary.wA.d7}</td>
-        <td className={styles.tfoot}>{summary.wA.d30}</td>
-        <td className={styles.tfoot}>{summary.wA.d60}</td>
-        <td className={styles.tfoot}>{summary.wA.d90}</td>
+        <td colSpan={2} className={styles.td}></td>
+        <td className={styles.td}>{summary.installs}</td>
+        <td className={styles.td}>{summary.wA.d0}</td>
+        <td className={styles.td}>{summary.wA.d3}</td>
+        <td className={styles.td}>{summary.wA.d7}</td>
+        <td className={styles.td}>{summary.wA.d30}</td>
+        <td className={styles.td}>{summary.wA.d60}</td>
+        <td className={styles.td}>{summary.wA.d90}</td>
       </tr>
     </tfoot>
   );

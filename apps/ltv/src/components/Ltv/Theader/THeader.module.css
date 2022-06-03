@@ -6,10 +6,17 @@
     background-color: #F5F7F9;
     color: #70767E;
     text-align: left;
+    position: sticky;
+    top: 0;
+    /*border-top: 1px solid #EAECEE;*/
 }
 
 .th{
     padding-left: 5px;
-    border: 1px solid #EAECEE;
+    /*border: 1px solid #EAECEE;*/
     vertical-align: middle;
+}
+
+.th:not(:last-child){
+    border-right: 1px solid #EAECEE;
 }
