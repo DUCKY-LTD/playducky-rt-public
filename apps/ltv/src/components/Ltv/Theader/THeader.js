@@ -1,18 +1,19 @@
 import React from "react";
+import styles from './THeader.module.css'
 
 function THeader() {
   return (
-    <thead>
+    <thead className={styles.thead}>
       <tr>
-        <th>Install Day</th>
-        <th>CPI</th>
-        <th>Installs</th>
-        <th>Day 0</th>
-        <th>Day 3</th>
-        <th>Day 7</th>
-        <th>Day 30</th>
-        <th>Day 60</th>
-        <th>Day 90</th>
+        <th className={styles.th}>Install Day</th>
+        <th className={styles.th}>CPI</th>
+        <th className={styles.th}>Installs</th>
+        <th className={styles.th}>Day 0</th>
+        <th className={styles.th}>Day 3</th>
+        <th className={styles.th}>Day 7</th>
+        <th className={styles.th}>Day 30</th>
+        <th className={styles.th}>Day 60</th>
+        <th className={styles.th}>Day 90</th>
       </tr>
     </thead>
   );

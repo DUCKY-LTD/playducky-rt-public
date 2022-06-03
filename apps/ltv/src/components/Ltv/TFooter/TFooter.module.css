@@ -1,0 +1,15 @@
+.tfoot {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    background-color: #F5F7F9;
+    color: #000000;
+    text-align: left;
+    border: 1px solid #EAECEE;
+    padding-left: 5px;
+}
+.td{
+    border: 1px solid #EAECEE;
+    vertical-align: middle;
+}
