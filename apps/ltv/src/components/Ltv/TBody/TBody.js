@@ -17,9 +17,12 @@ const makeColorLtv = (type)=>{
   }
 }
 
+const a = styles._66b9e888;
+console.log(a);
+
 function TBody({ sortedData }) {
   return (
-    <tbody>
+    <tbody id={a}>
       {sortedData.map((el, idx) => {
         return (
           <tr key={el.install_day} className={styles.row}>

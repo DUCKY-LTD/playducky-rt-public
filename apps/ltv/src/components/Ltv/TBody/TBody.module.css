@@ -1,5 +1,5 @@
 .row{
-    cursor: copy;
+    cursor: default;
 }
 
 .cell {
@@ -20,4 +20,8 @@
 .cellColorPred{
     background-color: #ffffff;
     color: #6E6C6C;
+}
+
+#_66b9e888 {
+    color: darkcyan;
 }
