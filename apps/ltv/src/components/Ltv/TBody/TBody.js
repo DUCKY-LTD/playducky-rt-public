@@ -8,24 +8,21 @@ const makeColorLtv = (type)=>{
   const cellClasses = [styles.cell];
 
   if(type === 'fact'){
-    cellClasses.push(styles.cellColorFact);
+    cellClasses.push(styles.fact);
     return cellClasses.join(' ')
   }
   else {
-    cellClasses.push(styles.cellColorPred);
+    cellClasses.push(styles.pred);
     return cellClasses.join(' ')
   }
 }
 
-const a = styles._66b9e888;
-console.log(a);
-
 function TBody({ sortedData }) {
   return (
-    <tbody id={a}>
+    <tbody id={styles.cohort_body}>
       {sortedData.map((el, idx) => {
         return (
-          <tr key={el.install_day} className={styles.row}>
+          <tr key={el.install_day} >
             <td style={{width:"220px"}} className={styles.cell}>
               {el.install_day}
             </td>

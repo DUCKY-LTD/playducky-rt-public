@@ -1,7 +1,3 @@
-.row{
-    cursor: default;
-}
-
 .cell {
     padding: 15px 5px;
     background-color: #ffffff;
@@ -12,16 +8,17 @@
     vertical-align: middle;
 }
 
-.cellColorFact{
+.fact{
     background-color: #77AAD1;
     color: #ffffff;
 }
 
-.cellColorPred{
+.pred{
     background-color: #ffffff;
     color: #6E6C6C;
 }
 
-#_66b9e888 {
+#cohort_body tr{
     color: darkcyan;
+    cursor: context-menu;
 }
