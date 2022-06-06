@@ -8,3 +8,13 @@
     border: 1px solid #EAECEE;
     vertical-align: middle;
 }
+
+.cell__color-fact{
+    background-color: #77AAD1;
+    color: #ffffff;
+}
+
+.cell__color-pred{
+    background-color: #ffffff;
+    color: #6E6C6C;
+}
