@@ -18,8 +18,6 @@
   overflow: auto;
 }
 
-.react-datepicker {
-  position: fixed !important;
-  left: 540px;
-  top: 540px;
+.title{
+  text-align: center;
 }
