@@ -9,7 +9,6 @@ import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
 import {apiLtv} from "shared-lib/src/api/api";
 import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
-console.log(styles)
 
 function Ltv() {
   const [allData, setAllData] = useState([]);
