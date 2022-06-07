@@ -1,25 +1,25 @@
 .cell {
-    padding: 15px 5px;
-    background-color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    border: 1px solid #EAECEE;
-    vertical-align: middle;
+    padding: 15px 5px !important;
+    background-color: #ffffff !important;
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    border: 1px solid #EAECEE !important;
+    vertical-align: middle !important;
 }
 
 .fact{
-    background-color: #77AAD1;
-    color: #ffffff;
+    background-color: #77AAD1 !important;
+    color: #ffffff !important;
 }
 
 .pred{
-    background-color: #ffffff;
-    color: #6E6C6C;
+    background-color: #ffffff !important;
+    color: #6E6C6C !important;
 }
 
 
 #cohort_body tr > td{
-    background-color: salmon;
-    cursor: context-menu !important;
+    /*background-color: lightcyan;*/
+    cursor: default !important;
 }
