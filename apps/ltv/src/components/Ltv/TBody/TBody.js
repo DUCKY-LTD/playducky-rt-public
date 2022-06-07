@@ -1,69 +1,55 @@
 import React from "react";
 import styles from './TBody.module.css'
 
+console.log(styles)
+
+// dynamic styles for td
+const makeColorLtv = (type)=>{
+  const cellClasses = [styles.cell];
+
+  if(type === 'fact'){
+    cellClasses.push(styles.fact);
+    return cellClasses.join(' ')
+  }
+  else {
+    cellClasses.push(styles.pred);
+    return cellClasses.join(' ')
+  }
+}
+
 function TBody({ sortedData }) {
   return (
-    <tbody>
+    <tbody id='cohort'>
       {sortedData.map((el, idx) => {
         return (
-          <tr key={el.install_day}>
+          <tr key={el.install_day} >
             <td style={{width:"220px"}} className={styles.cell}>
               {el.install_day}
             </td>
             <td className={styles.cell}>{el.cpi}</td>
             <td className={styles.cell}>{el.installs}</td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d0.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d0.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d0.type)}>
               {el.d0.value}
             </td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d3.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d3.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d3.type)}>
               {el.d3.value}
             </td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d7.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d7.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d7.type)}>
               {el.d7.value}
             </td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d30.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d30.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d30.type)}>
               {el.d30.value}
             </td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d60.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d60.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d60.type)}>
               {el.d60.value}
             </td>
             <td
-              className={styles.cell}
-              style={{
-                backgroundColor: el.d90.type === "fact" ? "#77AAD1" : "#FFFFFF",
-                color: el.d90.type === "fact" ? "#FFFFFF" : "#6E6C6C",
-              }}
-            >
+              className={makeColorLtv(el.d90.type)}>
               {el.d90.value}
             </td>
           </tr>

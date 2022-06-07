@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Ltv.css";
+import styles from "./Ltv.module.css";
 import moment from "moment";
 import FilterBar from "./FilterBar/FilterBar";
 import THeader from "./Theader/THeader";
@@ -8,6 +8,7 @@ import TFooter from "./TFooter/TFooter";
 import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
 import {apiLtv} from "shared-lib/src/api/api";
 import { dataHandler } from "shared-lib/src/utils/dataHandler";
+
 
 function Ltv() {
   const [allData, setAllData] = useState([]);
@@ -47,12 +48,12 @@ function Ltv() {
 
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
       {isLoading ? <LoadingSpinner/> :
-      (sortedData.length === 0) ? <h1 style={{textAlign: "center"}}>Data not available</h1> :
-          <div className={"overflow__container"}>
-            <table className="table__dash">
+      (sortedData.length === 0) ? <h1 className={styles.title}>Data not available</h1> :
+          <div className={styles.overflow__container}>
+            <table className={styles.table__dash}>
               <THeader/>
               <TBody sortedData={sortedData}/>
               <TFooter sortedData={sortedData}/>
