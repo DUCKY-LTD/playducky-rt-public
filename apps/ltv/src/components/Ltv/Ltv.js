@@ -49,7 +49,7 @@ function Ltv() {
 
   return (
     <div className={styles.container}>
-      {/*<FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>*/}
+      <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
       {isLoading ? <LoadingSpinner/> :
       (sortedData.length === 0) ? <h1 className={styles.title}>Data not available</h1> :
           <div className={styles.overflow__container}>
