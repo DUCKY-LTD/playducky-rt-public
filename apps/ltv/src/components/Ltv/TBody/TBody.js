@@ -1,8 +1,6 @@
 import React from "react";
 import styles from './TBody.module.css'
 
-console.log(styles)
-
 // dynamic styles for td
 const makeColorLtv = (type)=>{
   const cellClasses = [styles.cell];

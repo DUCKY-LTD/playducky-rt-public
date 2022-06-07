@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import styles from "./DateRangePicker.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import {logDOM} from "@testing-library/react";
 
 function DateRangePicker({ dateRangeHandler }) {
     //custom datepicker local state
@@ -12,6 +13,7 @@ function DateRangePicker({ dateRangeHandler }) {
         const [start, end] = dates;
         setStartDate(start);
         setEndDate(end);
+        setIsActive('custom')
     };
 
     //datePicker block days settings
@@ -20,15 +22,8 @@ function DateRangePicker({ dateRangeHandler }) {
     const dateBlockTo = new Date();
     dateBlockTo.setDate(dateBlockTo.getDate()+3650);
 
-    //show datePicker
-    const [status, setStatus] = useState(false);
-    const handleShow = (active) => {
-        setIsActive(active);
-        setStatus((prevState) => !prevState);
-    };
-
     //set style for active button
-    const [isActive, setIsActive] = useState(7);
+    const [isActive, setIsActive] = useState('7');
     const makeActiveButton = (button, isActive)=>{
         const buttonClasses = [styles.button];
 
@@ -41,7 +36,7 @@ function DateRangePicker({ dateRangeHandler }) {
     }
 
     //send date params from buttons to getLtv api
-    const onClick =(from,to, active)=>{
+    const onDate =(from,to, active)=>{
         dateRangeHandler(moment().subtract(from, "days").format("YYYY-MM-DD"),
             moment().subtract(to, "days").format("YYYY-MM-DD"));
         setIsActive(active)
@@ -51,46 +46,42 @@ function DateRangePicker({ dateRangeHandler }) {
     useEffect(() => {
         if (endDate) {
             dateRangeHandler(moment(startDate).format("YYYY-MM-DD"), moment(endDate).format("YYYY-MM-DD"));
-            setStatus((prevState) => !prevState);
         }
     }, [endDate]);
 
+    const CustomInput = forwardRef(({value, onClick }, ref) => (
+        <button className={(makeActiveButton('custom', isActive)) +' '+(styles.buttonLast)} onClick={onClick} ref={ref}>
+            {'Custom'}
+        </button>
+    ));
+
+
     return (
         <div className={styles.container}>
-            <button className={makeActiveButton(3, isActive)}
-                    type="button" onClick={()=>onClick(4, 2, 3)}>
+            <button className={(makeActiveButton('3', isActive))+' '+(styles.buttonFirst)}
+                    type="button" onClick={()=>onDate(4, 2, '3')}>
                 3 days
             </button>
-            <button className={makeActiveButton(7, isActive)}
-                    type="button" onClick={()=>onClick(8, 2, 7)}>
+            <button className={makeActiveButton('7', isActive)}
+                    type="button" onClick={()=>onDate(8, 2, '7')}>
                 7 days
             </button>
-            <button className={makeActiveButton(30, isActive)}
-                    type="button" onClick={()=>onClick(31, 2,30)}>
+            <button className={makeActiveButton('30', isActive)}
+                    type="button" onClick={()=>onDate(31, 2,'30')}>
                 30 days
             </button>
-            <>
-            <button className={makeActiveButton('custom', isActive)}
-                    type="button" onClick={()=>handleShow('custom')}>
-                {endDate
-                    ? moment(startDate).format("YYYY-MM-DD") +
-                    " - " +
-                    moment(endDate).format("YYYY-MM-DD")
-                    : "Custom"}
-            </button>
-            {status && (
-                    <DatePicker
-                    onChange={onChange}
-                    startDate={startDate}
-                    endDate={endDate}
-                    selectsRange
-                    inline
-                    excludeDateIntervals={[
-                        { start: dateBlockFrom, end: dateBlockTo },
-                    ]}
-                />
-            )}
-            </>
+
+            <DatePicker
+                selected={startDate}
+                onChange={onChange}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                customInput={<CustomInput />}
+                excludeDateIntervals={[
+                    { start: dateBlockFrom, end: dateBlockTo },
+                ]}
+            />
         </div>
     );
 }
