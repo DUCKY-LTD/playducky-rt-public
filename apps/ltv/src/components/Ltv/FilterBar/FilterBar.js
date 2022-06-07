@@ -7,7 +7,6 @@ import CountrySelector from "./CountrySelector/CountrySelector";
 
 
 function FilterBar({ dateRangeHandler, countryHandler }) {
-
     return (
         <div className={styles.container}>
             <DateRangePicker dateRangeHandler={dateRangeHandler} />

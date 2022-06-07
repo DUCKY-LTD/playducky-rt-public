@@ -1,20 +1,15 @@
 
 .container {
   width: 1200px;
-  /*margin: 20px;*/
-  padding: 20px;
-  /*border: 1px solid red;*/
 }
 
 .table__dash {
-  /*table-layout: fixed;*/
   width: 100%;
   border-collapse: collapse;
 }
 
 .overflow__container{
-  height: 450px;
-  /*outline: 1px solid red;*/
+  height: 480px;
   overflow: auto;
 }
 
