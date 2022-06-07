@@ -19,7 +19,7 @@ const makeColorLtv = (type)=>{
 
 function TBody({ sortedData }) {
   return (
-    <tbody id={styles.cohort_body}>
+    <tbody id='cohort'>
       {sortedData.map((el, idx) => {
         return (
           <tr key={el.install_day} >
