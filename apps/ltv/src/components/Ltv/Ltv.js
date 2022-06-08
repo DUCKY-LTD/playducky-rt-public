@@ -11,57 +11,57 @@ import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 
 function Ltv() {
-  const [allData, setAllData] = useState([]);
-  const [dateRange, setDateRange] = useState({
-    from: moment().subtract(8, "days").format("YYYY-MM-DD"),
-    to: moment().subtract(2, "days").format("YYYY-MM-DD"),
-  });
-  const [country, setCountry]= useState('US');
-
-  const dateRangeHandler = (from, to) => {
-    setDateRange({
-      from: from,
-      to: to,
+    const [allData, setAllData] = useState([]);
+    const [dateRange, setDateRange] = useState({
+        from: moment().subtract(8, "days").format("YYYY-MM-DD"),
+        to: moment().subtract(2, "days").format("YYYY-MM-DD"),
     });
-  };
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    apiLtv.getLtv(dateRange.from, dateRange.to, country).then((response) => {
-      let data;
-      data = response;
-      setAllData(data);
-      setIsLoading(false)
-    });
-  }, [dateRange,country]);
-
-  const [sortedData, setSortedData] = useState([]);
-
-  useEffect(() => {
-    const copyData = JSON.parse(JSON.stringify(allData));
-    const result = dataHandler.getSortedData(copyData);
-    setSortedData(result);
-  }, [allData]);
+    const [country, setCountry]= useState();
+    const [isLoading, setIsLoading] = useState(false);
 
 
+    const dateRangeHandler = (from, to) => {
+        setDateRange({
+            from: from,
+            to: to,
+        });
+    };
 
-  return (
-    <div className={styles.container}>
-      <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
-      {isLoading ? <LoadingSpinner/> :
-      (sortedData.length === 0) ? <h1 className={styles.title}>Data not available</h1> :
-          <div className={styles.overflow__container}>
-            <table className={styles.table__dash}>
-              <THeader/>
-              <TBody sortedData={sortedData}/>
-              <TFooter sortedData={sortedData}/>
-            </table>
-          </div>
-      }
-    </div>
-  );
+    useEffect(() => {
+        setIsLoading(true);
+        apiLtv.getLtvByDate(dateRange.from, dateRange.to).then((response) => {
+            let data;
+            data = response;
+            setAllData(data);
+            setIsLoading(false)
+        });
+    }, [dateRange,country]);
+
+    const [sortedData, setSortedData] = useState([]);
+
+    useEffect(() => {
+        const copyData = JSON.parse(JSON.stringify(allData));
+        const result = dataHandler.getSortedData(copyData);
+        setSortedData(result);
+    }, [allData]);
+
+
+
+    return (
+        <div className={styles.container}>
+            <FilterBar dateRangeHandler={dateRangeHandler} countryHandler={setCountry}/>
+            {isLoading ? <LoadingSpinner/> :
+                (sortedData.length === 0) ? <h1 className={styles.title}>Data not available</h1> :
+                    <div className={styles.overflow__container}>
+                        <table className={styles.table__dash}>
+                            <THeader/>
+                            <TBody sortedData={sortedData}/>
+                            <TFooter sortedData={sortedData}/>
+                        </table>
+                    </div>
+            }
+        </div>
+    );
 }
 
 export default Ltv;

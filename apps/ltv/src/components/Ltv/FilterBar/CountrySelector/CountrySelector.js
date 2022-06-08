@@ -5,11 +5,11 @@ import {countries} from "shared-lib/src/shared/countries";
 const options = countries.map((el)=>{
     return {'value':el, 'label':el}
 })
+console.log(options);
 
 const selectorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "#FFF",
         cursor:  "pointer",
-        color:"red",
         border: "1px solid #EAECEE",
         fontSize: '12px'}),
     option: (styles) => {
@@ -34,7 +34,8 @@ function CountrySelector({countryHandler}) {
 
     return <div style={{paddingRight:'8px'}}>
         <Select
-            defaultValue={options[229]}
+            defaultValue={null}
+            defaultInputValue={'All'}
             onChange={setSelectedOption}
             options={options}
             styles={selectorStyles}
