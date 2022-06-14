@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
+import styles from './CountrySelector.module.css'
 import Select from 'react-select'
 import {countries} from "shared-lib/src/shared/countries";
+
 
 const options = countries.map((el)=>{
     return {'value':el, 'label':el}
 })
-console.log(options);
 
 const selectorStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "#FFF",
@@ -32,10 +33,11 @@ function CountrySelector({countryHandler}) {
         }
     }, [selectedOption])
 
-    return <div style={{paddingRight:'8px'}}>
+    return <div className={styles.container} >
+        <p className={styles.text}>Country</p>
         <Select
             defaultValue={null}
-            defaultInputValue={'All'}
+            placeholder={'All'}
             onChange={setSelectedOption}
             options={options}
             styles={selectorStyles}

@@ -3,7 +3,7 @@ import styles from "./DateRangePicker.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import {logDOM} from "@testing-library/react";
+
 
 function DateRangePicker({ dateRangeHandler }) {
     //custom datepicker local state
@@ -36,7 +36,7 @@ function DateRangePicker({ dateRangeHandler }) {
     }
 
     //send date params from buttons to getLtv api
-    const onDate =(from,to, active)=>{
+    const onDate = (from,to, active)=>{
         dateRangeHandler(moment().subtract(from, "days").format("YYYY-MM-DD"),
             moment().subtract(to, "days").format("YYYY-MM-DD"));
         setIsActive(active)
