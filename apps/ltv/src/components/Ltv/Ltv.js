@@ -16,8 +16,8 @@ import { dataHandler } from "shared-lib/src/utils/dataHandler";
 const gPBundleId = window.gPBundleId;
 const iOsAppId = window.iOsAppId;
 
-console.log(gPBundleId);
-console.log(iOsAppId);
+// console.log(gPBundleId);
+// console.log(iOsAppId);
 
 class Ltv extends Component {
     state = {
@@ -36,13 +36,17 @@ class Ltv extends Component {
 
     componentDidMount() {
         const {from, to, gP, iOs} = this.state.params;
-        console.log('must work 1 time-starting query');
+        const {isLoading} = this.state;
+
+        this.setState(prevState => ({isLoading: !prevState.isLoading}));
+
         apiLtv.getLtv(from, to, {app_id:[gP, iOs]}).then((response) => {
             const copyData = JSON.parse(JSON.stringify(response));
             const result = dataHandler.getSortedData(copyData);
             this.setState({
                 sortedData: result
             });
+            this.setState(prevState => ({isLoading: !prevState.isLoading}))
         });
     }
 
@@ -86,6 +90,8 @@ class Ltv extends Component {
         }} = this.state;
 
         if(prevState.params !== this.state.params){
+            // this.setState(prevState => ({isLoading: !prevState.isLoading}));
+
             if(gpStatus && iosStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[gP, iOs]}).then((response) => {
                     const copyData = JSON.parse(JSON.stringify(response));
@@ -93,6 +99,7 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
+                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!gpStatus && iosStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[iOs]}).then((response) => {
@@ -101,6 +108,7 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
+                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!iosStatus && gpStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[gP]}).then((response) => {
@@ -109,6 +117,7 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
+                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!iosStatus && !gpStatus){
                 this.setState(prevState => {
@@ -120,6 +129,7 @@ class Ltv extends Component {
                         }
                     }
                 });
+                // this.setState(prevState => ({isLoading: !prevState.isLoading}))
             }
         }
     }
