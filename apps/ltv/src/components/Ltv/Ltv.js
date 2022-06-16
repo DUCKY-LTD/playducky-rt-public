@@ -9,15 +9,13 @@ import LoadingSpinner from "./LoadingSpinner/LoadingSpinner";
 import {apiLtv} from "shared-lib/src/api/api";
 import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
+
 // for debug
 // const gPBundleId = 'team.teagames.mergemonstersarmy';
 // const iOsAppId = 'id1609950100';
 
 const gPBundleId = window.gPBundleId;
 const iOsAppId = window.iOsAppId;
-
-// console.log(gPBundleId);
-// console.log(iOsAppId);
 
 class Ltv extends Component {
     state = {
@@ -36,7 +34,6 @@ class Ltv extends Component {
 
     componentDidMount() {
         const {from, to, gP, iOs} = this.state.params;
-        const {isLoading} = this.state;
 
         this.setState(prevState => ({isLoading: !prevState.isLoading}));
 
@@ -62,6 +59,7 @@ class Ltv extends Component {
     };
 
     countryHandler = (country) => {
+        console.log(country)
         const {params} = this.state;
         this.setState({
             params:{
@@ -136,6 +134,7 @@ class Ltv extends Component {
 
     render() {
         const {isLoading, sortedData, params} = this.state;
+        console.log(params.country)
 
         return (
              <div className={styles.container}>

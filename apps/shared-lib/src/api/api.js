@@ -3,7 +3,6 @@ import axios from "axios";
 const authHash = window.authHash;
 const userId = window.userId;
 
-
 const instance = axios.create({
   baseURL: "https://api.playducky.com/node/",
   headers: {
@@ -12,14 +11,8 @@ const instance = axios.create({
   },
 });
 
-console.log(authHash);
-console.log(userId);
-
-
 export const apiLtv = {
     getLtv(from, to, options) {
-        // console.log('getLtvByDate FROM:__'+from, ' TO:___'+to, options);
-        //app_id=${iOsAppId}&app_id=id1609950100&from=${from}&to=${to}?country=${country}
         return instance
             .get(
                 `ltv_by_app`, {
@@ -54,8 +47,6 @@ export const apiLtv = {
 //
 // export const apiLtv = {
 //     getLtv(from, to, options) {
-//         // console.log('getLtvByDate FROM:__'+from, ' TO:___'+to, options);
-//         //app_id=${iOsAppId}&app_id=id1609950100&from=${from}&to=${to}?country=${country}
 //         return instance
 //             .get(
 //                 `ltv_by_app`, {
