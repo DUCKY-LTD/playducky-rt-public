@@ -38,7 +38,7 @@ function CountrySelector({countryHandler}) {
         if(selectedOption){
             countryHandler(selectedOption.value)
         }
-    }, [selectedOption])
+    }, [selectedOption, countryHandler])
 
     return <div className={styles.container} >
         <p className={styles.text}>Country</p>
