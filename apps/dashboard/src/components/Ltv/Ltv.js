@@ -11,11 +11,11 @@ import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 
 // for debug
-const gPBundleId = 'team.teagames.mergemonstersarmy';
-const iOsAppId = 'id1609950100';
+// const gPBundleId = 'team.teagames.mergemonstersarmy';
+// const iOsAppId = 'id1609950100';
 
-// const gPBundleId = window.gPBundleId;
-// const iOsAppId = window.iOsAppId;
+const gPBundleId = window.gPBundleId;
+const iOsAppId = window.iOsAppId;
 
 class Ltv extends Component {
     state = {

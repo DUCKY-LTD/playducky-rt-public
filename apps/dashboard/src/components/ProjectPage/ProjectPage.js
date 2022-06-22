@@ -7,7 +7,7 @@ import TabsPanel from "./TabsPanel/TabsPanel";
 import Ltv from "../Ltv/Ltv";
 
 
-const game = "1650552170075x873725647565619200";
+const gameId = window.gameId;
 
 const modifyString = (str)=>{
    if (str) return str.slice(0, 10)
@@ -20,7 +20,7 @@ class ProjectPage extends Component {
     }
 
     componentDidMount() {
-        apiLtv.getGame(game).then((response) => {
+        apiLtv.getGame(gameId).then((response) => {
             const result = response.response;
             // console.log(result);
             this.setState({
