@@ -13,9 +13,9 @@ const instance = axios.create({
 
 const gameInst = axios.create({
     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
-    headers: {
-        Authorization: `Bearer ${token}`
-    },
+    // headers: {
+    //     Authorization: `Bearer ${token}`
+    // },
 });
 
 export const apiLtv = {
@@ -59,7 +59,7 @@ export const apiLtv = {
 //     },
 // });
 //
-// const token =
+//
 // const gameInst = axios.create({
 //     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
 //     headers: {

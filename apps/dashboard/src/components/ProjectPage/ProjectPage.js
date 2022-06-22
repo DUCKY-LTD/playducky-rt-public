@@ -8,7 +8,7 @@ import Ltv from "../Ltv/Ltv";
 
 
 const gameId = window.gameId;
-
+// const gameId = "1650552170075x873725647565619200";
 const modifyString = (str)=>{
    if (str) return str.slice(0, 10)
 }
