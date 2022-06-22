@@ -1,0 +1,37 @@
+.container {
+    padding: 90px 30px 0 30px;
+    outline: 1px solid lightsalmon;
+    background-color: #fafafa;
+}
+
+.img {
+    border-radius: 22px;
+    margin-right: 30px;
+}
+
+.card {
+    display: flex;
+    outline: 1px solid blue;
+}
+
+.title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.team {
+    margin-bottom: 25px;
+}
+
+.cardInfo {
+    composes: card;
+    justify-content: space-between;
+}
+
+.editBlock {
+    display: flex;
+    margin-left: auto;
+    outline: 1px solid red;
+}
