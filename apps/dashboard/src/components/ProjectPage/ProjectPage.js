@@ -9,8 +9,8 @@ import TransitionsModal from './TransitionsModal/TransitionsModal';
 import ExperimentList from './ExperimentList/ExperimentList';
 
 
-// const gameId = window.gameId;
-const gameId = "1650488652114x823208019400586600";
+const gameId = window.gameId;
+// const gameId = "1650488652114x823208019400586600";
 const modifyString = (str)=>{
    if (str) return str.slice(0, 10)
 }
