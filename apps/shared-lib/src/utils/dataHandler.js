@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const dataHandler = {
   getSortedData(data) {
     // console.log(data)
@@ -125,4 +127,19 @@ export const dataHandler = {
       wA: dayVertical,
     };
   },
+
+  getExperiment(data) {
+    const sortedData = [];
+
+    data.map(el => {
+      createData(el.testno_number, el.type_text, (moment(el['Created Date']).format('MMM DD, YYYY')), el.status_text,
+          el.creatives_text, null, el.crt_number_number, el.cpi_best_number)
+    })
+
+    function createData(index, type, date, status, creatives, whatsNew, bestCtr, bestCpi) {
+      sortedData.push({ index, type, date, status, creatives, whatsNew, bestCtr, bestCpi }) ;
+    }
+
+    return sortedData.reverse();
+  }
 };

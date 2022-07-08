@@ -1,0 +1,49 @@
+.cpi {
+    background-color: #ffa50033;
+    border-radius: 100px;
+    color: #ffa500;
+    padding: 5px 20px 5px 20px;
+}
+
+.ctr {
+    background: #5C56FF33;
+    border-radius: 100px;
+    color: #5C56FFFF;
+    padding: 5px 20px 5px 20px;
+}
+
+.mon {
+    background: #FF000033;
+    border-radius: 100px;
+    color: #FF0000E5;
+    padding: 5px 20px 5px 20px;
+}
+
+.ready{
+    cursor: default;
+    color: #00B41AFF;
+}
+
+.running{
+
+    cursor: default;
+    color: #1C34B6CC;
+}
+
+.rejected{
+    cursor: default;
+    color: #F52727CC;
+}
+
+.waiting{
+    cursor: default;
+    color: #D19513FF;
+}
+
+.link {
+    color: #00A2FF;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

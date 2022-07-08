@@ -1,0 +1,55 @@
+.input {
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #000;
+    border: 0;
+    border-bottom: 1px solid #c9c9c9;
+    width: 100%;
+    padding: 6px 0;
+}
+
+.input:focus {
+    outline: transparent;
+}
+
+.label {
+    display: block;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #000;
+}
+
+.float_div {
+ margin-bottom: 20px;
+}
+
+.float_div input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #46008c;
+    transition: 0.2s all linear;
+    outline: none;
+    top: 3px;
+
+    position: relative;
+}
+
+.float_div input:checked {
+    border: 6px solid #46008c;
+}
+
+.float_div label {
+    margin-right: 55px;
+    padding-left: 10px;
+    color: #252525;
+}
