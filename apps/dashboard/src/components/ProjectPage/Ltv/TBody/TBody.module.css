@@ -1,0 +1,22 @@
+.cell {
+    padding: 15px 5px;
+    background-color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #EAECEE;
+    vertical-align: middle;
+}
+
+.fact{
+    background-color: #77AAD1;
+    color: #ffffff;
+}
+
+.pred{
+    background-color: #ffffff;
+    color: #6E6C6C;
+}
+
+
+

@@ -47,6 +47,35 @@ export const apiLtv = {
             });
     },
 
+    getTeam(teamId) {
+        return gameInst
+            .get(`team/${teamId}`
+            )
+            .then((response) => response.data)
+            .catch((error) => {
+                console.log("error :", error);
+            });
+    },
+
+    getExperiment(gameId) {
+        return gameInst
+            .get(`MktTests1?constraints=[ { \"key\": \"GameID\", \"constraint_type\": \"equals\", \"value\": \"${gameId}\" }  ]`
+            )
+            .then((response) => response.data)
+            .catch((error) => {
+                console.log("error :", error);
+            });
+    },
+
+    editGame(gameId, data){
+        return gameInst
+            .patch(`game/${gameId}`, data)
+            .then((response) => response.data)
+            .catch((error) => {
+                console.log("error :", error);
+            });
+    }
+
 };
 
 // static api for debug
