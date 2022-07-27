@@ -50,7 +50,9 @@ const TabsList = styled(TabsListUnstyled)`
 
 const Container = ({children}) => <div className={styles.container}>{children}</div>;
 
- function TabsPanel({ltv, experimentList, gameName}) {
+ function TabsPanel({ltv, experimentList, gameName, handleCtrTest, handleCpiTest}) {
+     // console.log(isExperimentDataChanged)
+
      return (
         <TabsUnstyled defaultValue={0}>
             <TabsList>
@@ -65,7 +67,8 @@ const Container = ({children}) => <div className={styles.container}>{children}</
                         <div className={styles.button_div}>
                             <TransitionsModal btnName={'Create new test'} btnBgColor={'#46008c'}
                                               modalWidth={530} gameName={gameName} type={'newExperiment'}
-                                              btnSize={'large'}/>
+                                              btnSize={'large'} handleCpiTest={handleCpiTest} handleCtrTest={handleCtrTest}
+                            />
                         </div>
                     {experimentList}
                 </Container>

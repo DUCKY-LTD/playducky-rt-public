@@ -1,10 +1,23 @@
 import React, {Component} from "react";
-import styled from "styled-components";
+import s from "./Experiment.module.css";
+import {dataHandler} from "shared-lib/src/utils/dataHandler";
+import {apiLtv} from "shared-lib/src/api/api";
 
 const INITIAL_STATE = {
     creatives: '',
-    description: '',
+    whatsNew: '',
 };
+
+const makeActiveButton = (isDisabled) => {
+    const buttonClass = [s.button];
+
+    if (!isDisabled) {
+        buttonClass.push(s.disabled);
+        return buttonClass.join(' ')
+    }
+
+    return s.button
+}
 
 export default class Ctr extends Component {
 
@@ -21,16 +34,9 @@ export default class Ctr extends Component {
     handleSubmit = evt => {
         evt.preventDefault();
 
-        const { creatives, description } = this.state;
-
-        console.log(`
-      creatives: ${creatives}
-      description: ${description}
-    
-    `);
-
-        // this.props.onSubmit({ ...this.state });
+        this.props.handleCtrTest({...this.state});
         this.reset();
+        this.props.handleClose();
     };
 
     reset = () => {
@@ -38,38 +44,46 @@ export default class Ctr extends Component {
     };
 
     render (){
-        const { creatives, description } = this.state;
+        const { creatives, whatsNew } = this.state;
         const isDisable = creatives.length !== 0;
-        console.log(isDisable)
-
 
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label style={{marginBottom: "10px"}} className={s.label} htmlFor="creatives_ctr">
                         Creatives for test
+                    </label>
+                    <p className={s.ctr_explanation}>
+                        Video requirements:<br/>
+                        1. MP4, aspect ratio 4:5 (1080x1350). Avoid black or blurred borders.<br/>
+                        2. Length 15-20 seconds.<br/>
+                        3. Start with the best action scene, no intro.<br/>
+                        4. Raw gameplay footage, no montage cuts, no effects.<br/>
+                        5. Please check that access to google drive is open to everyone
+                    </p>
                         <input
+                            style={{marginBottom: "20px"}}
+                            id="creatives_ctr"
+                            className={s.input}
                             type="text"
                             placeholder="http://drive.google.com/"
                             name="creatives"
                             value={creatives}
                             onChange={this.handleChange}
                         />
-                    </label>
-                    <hr/>
-                    <label>
+                    <label className={s.label} style={{marginBottom: "15px"}} htmlFor="ctr_description">
                         What's new in this videos? (What did you change?)
+                    </label>
                         <textarea
-                            rows={5}
+                            className={s.textarea}
+                            id="ctr_description"
+                            rows={3}
                             placeholder="Camera, Different colors, New water..."
-                            name="description"
-                            value={description}
+                            name="whatsNew"
+                            value={whatsNew}
                             onChange={this.handleChange}
                         />
-                    </label>
-
-
-                    <button type="submit" disabled={!isDisable}>Test it</button>
+                    <button className={makeActiveButton(isDisable)} type="submit" disabled={!isDisable}>Test it</button>
                 </form>
             </div>
         )

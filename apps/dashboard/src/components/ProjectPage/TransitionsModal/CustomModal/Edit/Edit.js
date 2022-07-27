@@ -1,25 +1,16 @@
 import React, {Component} from "react";
 import s from "./Edit.module.css";
-import styled from "styled-components";
-
-
-
-
-
-const INITIAL_STATE = {
-    shortDescription: '',
-    fullDescription: '',
-    link: '',
-    gpBundleId: '',
-    iosBundleId: '',
-    iosAppId: ''
-};
 
 export default class Edit extends Component {
     state = {
-        ...INITIAL_STATE,
-        game_name_text: this.props.gameName,
-        immutableTitle: this.props.gameName
+        gameTitle: this.props.gameName,
+        immutableTitle: this.props.gameName,
+        shortDescription: this.props.shortDescription,
+        fullDescription: this.props.fullDescription,
+        link: this.props.link,
+        gpBundleId: this.props.gpBundleId,
+        iosBundleId: this.props.iosBundleId,
+        iosAppId: this.props.iosAppId,
     }
 
     handleChange = ({ target }) => {
@@ -31,24 +22,11 @@ export default class Edit extends Component {
     handleSubmit = evt => {
         evt.preventDefault();
 
-        // const { title, link, shortDescription, fullDescription, gpBundleId, iosBundleId, iosAppId } = this.state;
-
-    //     console.log(`
-    //   title: ${title}
-    //   shortDescription: ${shortDescription}
-    //   fullDescription: ${fullDescription}
-    //   fullDescription: ${fullDescription}
-    //   link: ${link}
-    //   gpBundleId: ${gpBundleId}
-    //   gpBundleId: ${iosBundleId}
-    //   gpBundleId: ${iosAppId}
-    // `);
-
         this.props.editGameHandler({ ...this.state });
     };
 
     render() {
-        const {immutableTitle, game_name_text, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = this.state;
+        const {immutableTitle, gameTitle, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = this.state;
         const {handleClose} = this.props;
 
         return(
@@ -63,8 +41,8 @@ export default class Edit extends Component {
                                 className={s.input}
                                 id="game_title"
                                 type="text"
-                                name="game_name_text"
-                                value={game_name_text}
+                                name="gameTitle"
+                                value={gameTitle}
                                 onChange={this.handleChange}
                             />
                     </div>

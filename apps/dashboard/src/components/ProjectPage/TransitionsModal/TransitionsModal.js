@@ -55,7 +55,9 @@ const style = (width) => ({
 
 
 
-export default function TransitionsModal({btnName, btnBgColor, gameName, type, editGameHandler, modalWidth, btnSize}) {
+export default function TransitionsModal({btnName, btnBgColor, gameName, shortDescription, fullDescription, handleCtrTest,
+                                             link, gpBundleId, iosBundleId, iosAppId, type, editGameHandler, modalWidth, btnSize, handleCpiTest}) {
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -73,7 +75,11 @@ export default function TransitionsModal({btnName, btnBgColor, gameName, type, e
             >
                 <Fade in={open} timeout={300}>
                     <Box sx={style(modalWidth)}>
-                        <CustomModal type={type} gameName={gameName} handleClose={handleClose} editGameHandler={editGameHandler}/>
+                        <CustomModal type={type} gameName={gameName} shortDescription={shortDescription} fullDescription={fullDescription}
+                                     link={link} gpBundleId={gpBundleId} iosBundleId={iosBundleId} iosAppId={iosAppId}
+                                     handleClose={handleClose} editGameHandler={editGameHandler}
+                                      handleCpiTest={handleCpiTest} handleCtrTest={handleCtrTest}
+                        />
                     </Box>
                 </Fade>
             </Modal>

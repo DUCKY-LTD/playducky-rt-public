@@ -132,8 +132,8 @@ export const dataHandler = {
     const sortedData = [];
 
     data.map(el => {
-      createData(el.testno_number, el.type_text, (moment(el['Created Date']).format('MMM DD, YYYY')), el.status_text,
-          el.creatives_text, null, el.crt_number_number, el.cpi_best_number)
+      createData(el.TestNo, el.Type, (moment(el['Created Date']).format('MMM DD, YYYY')), el.Status,
+          el['Tested Creatives'], el.DevExperimentComments, el.CTR_number, el.CPI_best)
     })
 
     function createData(index, type, date, status, creatives, whatsNew, bestCtr, bestCpi) {
@@ -141,5 +141,78 @@ export const dataHandler = {
     }
 
     return sortedData.reverse();
+  },
+
+  editGame(data){
+    const {gameTitle, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = data;
+
+    let sortedData = {};
+    const GamePlayVideoLink = 'Gameplay Video Link';
+
+    function createData(GameName, ShortDescription, Description,
+                         GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID) {
+      sortedData = {GameName, ShortDescription, Description,
+        GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID} ;
+    }
+    createData(gameTitle, shortDescription, fullDescription, gpBundleId, iosBundleId, iosAppId);
+
+    sortedData['Gameplay Video Link'] = link;
+
+    return sortedData;
+  },
+
+  createNewCtrTest(stateData, experimentData, gameId,  teamData){
+    const {_id} = teamData;
+
+    function createNextIndex () {
+      let currentIndex = 0;
+      if (experimentData.length > 0) {
+        experimentData.forEach((el, idx) => {
+          if(idx === 0) currentIndex = el.index + 1
+        })
+        return currentIndex
+      } else {
+        return currentIndex = 1
+      }
+    }
+
+    return {
+      'GameID': gameId,
+      Type: 'CTR',
+      TestNo: createNextIndex(),
+      'Tested Creatives': stateData.creatives,
+      Status: 'Waiting for approval',
+      'Tested Game': gameId,
+      'Testing Team': _id,
+      DevExperimentComments: stateData.whatsNew
+    };
+  },
+
+  createNewCpiTest(stateData, experimentData, gameId,  teamData){
+    const {_id} = teamData;
+
+    function createNextIndex () {
+      let currentIndex = 0;
+      if (experimentData.length > 0) {
+        experimentData.forEach((el, idx) => {
+          if(idx === 0) currentIndex = el.index + 1
+        })
+        return currentIndex
+      } else {
+        return currentIndex = 1
+      }
+    }
+
+    return {
+      'GameID': gameId,
+      Type: 'CPI',
+      TestNo: createNextIndex(),
+      'Tested Creatives': stateData.creatives,
+      Status: 'Waiting for approval',
+      'Tested Game': gameId,
+      'Testing Team': _id,
+      LinkToTestedApp: stateData.link,
+      Platform: stateData.platform
+    };
   }
 };

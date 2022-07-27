@@ -5,10 +5,14 @@ import Edit from "./Edit/Edit";
 
 
 
-export default function CustomModal ({type, gameName, handleClose, editGameHandler})  {
+export default function CustomModal ({type, gameName, shortDescription, fullDescription, link, handleCtrTest,
+                                         gpBundleId, iosBundleId, iosAppId, handleClose, editGameHandler, handleCpiTest})  {
     if (type === 'edit'){
         return (
-            <Edit gameName={gameName} handleClose={handleClose} editGameHandler={editGameHandler}/>
+            <Edit gameName={gameName} handleClose={handleClose} editGameHandler={editGameHandler}
+                  shortDescription={shortDescription} fullDescription={fullDescription} link={link}
+                  gpBundleId={gpBundleId} iosBundleId={iosBundleId} iosAppId={iosAppId}
+            />
         )
     }
 
@@ -20,7 +24,8 @@ export default function CustomModal ({type, gameName, handleClose, editGameHandl
 
     if (type === 'newExperiment') {
         return (
-            <Experiment gameName={gameName} handleClose={handleClose}/>
+            <Experiment gameName={gameName} handleClose={handleClose}
+            handleCpiTest={handleCpiTest} handleCtrTest={handleCtrTest}/>
         )
     }
 }

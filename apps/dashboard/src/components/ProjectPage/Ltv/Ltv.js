@@ -11,11 +11,11 @@ import { dataHandler } from "shared-lib/src/utils/dataHandler";
 
 
 // for debug
-const gPBundleId = 'team.teagames.mergemonstersarmy';
-const iOsAppId = 'id1609950100';
+// const gPBundleId = 'team.teagames.mergemonstersarmy';
+// const iOsAppId = 'id1609950100';
 
-// const gPBundleId = window.gPBundleId;
-// const iOsAppId = window.iOsAppId;
+const gPBundleId = window.gPBundleId;
+const iOsAppId = window.iOsAppId;
 
 class Ltv extends Component {
     state = {
@@ -88,7 +88,6 @@ class Ltv extends Component {
         }} = this.state;
 
         if(prevState.params !== this.state.params){
-            // this.setState(prevState => ({isLoading: !prevState.isLoading}));
 
             if(gpStatus && iosStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[gP, iOs]}).then((response) => {
@@ -97,7 +96,6 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
-                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!gpStatus && iosStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[iOs]}).then((response) => {
@@ -106,7 +104,6 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
-                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!iosStatus && gpStatus){
                 apiLtv.getLtv(from, to, {country, app_id:[gP]}).then((response) => {
@@ -115,7 +112,6 @@ class Ltv extends Component {
                     this.setState({
                         sortedData: result
                     });
-                    // this.setState(prevState => ({isLoading: !prevState.isLoading}))
                 })
             } else if (!iosStatus && !gpStatus){
                 this.setState(prevState => {
@@ -127,14 +123,12 @@ class Ltv extends Component {
                         }
                     }
                 });
-                // this.setState(prevState => ({isLoading: !prevState.isLoading}))
             }
         }
     }
 
     render() {
         const {isLoading, sortedData, params} = this.state;
-        // console.log(params.country)
 
         return (
              <div className={styles.container}>

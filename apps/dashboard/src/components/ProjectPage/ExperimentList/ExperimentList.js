@@ -31,7 +31,7 @@ const makeColorStatus = (type) => {
     if (type === 'Rejected') {
         return styles.rejected
     }
-    if (type === 'Waiting') {
+    if (type === 'Waiting for approval') {
         return styles.waiting
     }
     if (type === 'Running') {
@@ -55,7 +55,6 @@ const makeColorType = (type) => {
 
 export default function ExperimentList({data}) {
 
-
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -72,8 +71,8 @@ export default function ExperimentList({data}) {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map(({index, type, date, status, creatives, whatsNew, bestCtr, bestCpi}) => (
-                        <TableRow key={index}>
+                    {data.map(({index, type, date, status, creatives, whatsNew, bestCtr, bestCpi}, idx) => (
+                        <TableRow key={idx}>
                             <StyledTableCell component="th" scope="row">
                                 {index}
                             </StyledTableCell>

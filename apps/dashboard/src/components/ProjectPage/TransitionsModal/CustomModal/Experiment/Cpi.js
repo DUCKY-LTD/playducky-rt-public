@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import s from "./Experiment.module.css";
 
 const Platform = {
-    IOS: 'ios',
-    GP: 'gp',
+    IOS: 'iOs',
+    ANDROID: 'android',
 };
 
 const INITIAL_STATE = {
@@ -15,7 +15,18 @@ const INITIAL_STATE = {
     platform: null
 };
 
-export default class Cpi extends Component {
+const makeActiveButton = (isDisabled) => {
+    const buttonClass = [s.button];
+
+    if (!isDisabled) {
+        buttonClass.push(s.disabled);
+        return buttonClass.join(' ')
+    }
+
+    return s.button
+}
+
+    export default class Cpi extends Component {
 
     state = {
         ...INITIAL_STATE
@@ -28,28 +39,16 @@ export default class Cpi extends Component {
     };
 
     handleCheck = ({target}) => {
-        const { type, checked, value } = target;
-        console.log(value)
-        console.log(type, checked)
+        const { checked, value } = target;
         this.setState({[value]: checked})
     }
 
     handleSubmit = evt => {
         evt.preventDefault();
 
-        const { creatives, link, agreed_1, agreed_2, agreed_3, platform } = this.state;
-
-        console.log(`
-      creatives: ${creatives}
-      link: ${link}
-      agreed_1: ${agreed_1}
-      agreed_2: ${agreed_2}
-      agreed_3: ${agreed_3}
-      platform: ${platform}
-    `);
-
-        // this.props.onSubmit({ ...this.state });
+        this.props.handleCpiTest({...this.state})
         this.reset();
+        this.props.handleClose();
     };
 
     reset = () => {
@@ -60,6 +59,7 @@ export default class Cpi extends Component {
         const {gameName} = this.props;
         const { creatives, link, agreed_1, agreed_2, agreed_3, platform } = this.state;
         const isDisable = agreed_1 && agreed_2 && agreed_3;
+
 
         return (
             <div>
@@ -83,11 +83,11 @@ export default class Cpi extends Component {
                        />
                    </div>
                     <div style={{marginBottom: "20px"}}>
-                        <label className={s.label} htmlFor="tested_app_Link">
+                        <label className={s.label} htmlFor="link">
                             Tested App Link
                         </label>
                         <input
-                            id="tested_app_Link"
+                            id="link"
                             className={s.input}
                             type="text"
                             placeholder="http://itunes.apple.com/app/id1517450645"
@@ -109,45 +109,48 @@ export default class Cpi extends Component {
                         <input
                             id="cpi_gp"
                             type="radio"
-                            checked={platform === Platform.GP}
+                            checked={platform === Platform.ANDROID}
                             name="platform"
-                            value={Platform.GP}
+                            value={Platform.ANDROID}
                             onChange={this.handleChange}
                         />
                         <label htmlFor="cpi_gp">GP</label>
                     </div>
 
-                    <ul>
-                        <li><label>
+                    <ul className={s.list}>
+                        <li>
                             <input
                                 type="checkbox"
                                 checked={agreed_1}
                                 value="agreed_1"
                                 onChange={this.handleCheck}
                             />
-                            I've filled the checklist:
-                        </label></li>
-                        <li><label>
+                            <label> I've filled the checklist: <a href="https://playducky.notion.site/CPI-RD1-checklist-Team-s-store-EN-b25787cc10524008bacbfcc342895477"
+                                                                  target="_blank" rel="noopener noreferrer">[CHECKLIST]</a></label>
+                        </li>
+                        <li>
                             <input
                                 type="checkbox"
                                 checked={agreed_2}
                                 value="agreed_2"
                                 onChange={this.handleCheck}
                             />
-                            I've added 1330472120783838 as Authorized Ad Account
-                        </label></li>
-                        <li><label>
+                            <label> I've added 1330472120783838 as Authorized Ad Account</label>
+                        </li>
+                        <li>
                             <input
                                 type="checkbox"
                                 checked={agreed_3}
                                 value="agreed_3"
                                 onChange={this.handleCheck}
                             />
-                            I've turned on App in LIVE on FB
-                        </label></li>
+                            <label> I've turned on App in LIVE on FB</label>
+                        </li>
+                        <li><a href="https://playducky.notion.site/The-quick-guide-to-CPI-videos-280d6076a0c2448bbbcad71850d675eb" target="_blank"
+                        rel="noopener noreferrer">The quick guide to CPI videos.</a></li>
                     </ul>
 
-                    <button type="submit" disabled={!isDisable}>Test it</button>
+                    <button className={makeActiveButton(isDisable)} type="submit" disabled={!isDisable}>Test it</button>
                 </form>
             </div>
         )
