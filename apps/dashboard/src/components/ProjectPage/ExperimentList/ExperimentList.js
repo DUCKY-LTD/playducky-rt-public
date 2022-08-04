@@ -53,47 +53,51 @@ const makeColorType = (type) => {
 }
 
 
-export default function ExperimentList({data}) {
+export default function ExperimentList({data, testRedirectHandler}) {
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell>Test No</StyledTableCell>
-                        <StyledTableCell align="right">Type</StyledTableCell>
-                        <StyledTableCell align="right">Creation Date</StyledTableCell>
-                        <StyledTableCell align="right">Status</StyledTableCell>
-                        <StyledTableCell align="right">Creatives</StyledTableCell>
-                        <StyledTableCell align="right">What's new?</StyledTableCell>
-                        <StyledTableCell align="right">Best CTR</StyledTableCell>
-                        <StyledTableCell align="right">Best CPI</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map(({index, type, date, status, creatives, whatsNew, bestCtr, bestCpi}, idx) => (
-                        <TableRow key={idx}>
-                            <StyledTableCell component="th" scope="row">
-                                {index}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                <span className={makeColorType(type)}>{type}</span>
-                            </StyledTableCell>
-                            <StyledTableCell align="right">{date}</StyledTableCell>
-                            <StyledTableCell align="right">
-                                <span className={makeColorStatus(status)}>{status.toUpperCase()}</span>
-                            </StyledTableCell>
-                            <StyledTableCell align="right">
-                                    <a className={styles.link} href={creatives} target='_blank'
-                                       rel="noopener noreferrer">CREATIVES</a>
-                            </StyledTableCell>
-                            <StyledTableCell align="right">{whatsNew}</StyledTableCell>
-                                <StyledTableCell align="right">{bestCtr ? (`${bestCtr}%`): '-'}</StyledTableCell>
-                            <StyledTableCell align="right">{bestCpi ? (`$${bestCpi}`):'-'}</StyledTableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <>
+            {data.length === 0 ? <p className={styles.altText}>No matching records found</p> :
+                (<TableContainer component={Paper} sx={{boxShadow: 'none', borderRadius: '0'}}>
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell>Test No</StyledTableCell>
+                                <StyledTableCell align="right">Type</StyledTableCell>
+                                <StyledTableCell align="right">Creation Date</StyledTableCell>
+                                <StyledTableCell align="right">Status</StyledTableCell>
+                                <StyledTableCell align="right">Creatives</StyledTableCell>
+                                <StyledTableCell align="right">What's new?</StyledTableCell>
+                                <StyledTableCell align="right">Best CTR</StyledTableCell>
+                                <StyledTableCell align="right">Best CPI</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody sx={{cursor: 'pointer'}}>
+                            {data.map(({index, type, date, status, creatives, whatsNew, bestCtr, bestCpi, id}, idx) => (
+                                <TableRow key={idx} onClick={() => testRedirectHandler(id)}>
+                                    <StyledTableCell component="th" scope="row">
+                                        {index}
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                        <span className={makeColorType(type)}>{type}</span>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{date}</StyledTableCell>
+                                    <StyledTableCell align="right">
+                                        <span className={makeColorStatus(status)}>{status.toUpperCase()}</span>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">
+                                        <a className={styles.link} href={creatives} target='_blank'
+                                           rel="noopener noreferrer">CREATIVES</a>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="right">{whatsNew}</StyledTableCell>
+                                    <StyledTableCell align="right">{bestCtr ? (`${bestCtr}%`): '-'}</StyledTableCell>
+                                    <StyledTableCell align="right">{bestCpi ? (`$${bestCpi}`):'-'}</StyledTableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>)
+            }
+        </>
     );
 }

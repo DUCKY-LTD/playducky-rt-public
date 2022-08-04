@@ -17,7 +17,7 @@ const Div = styled.div`
   background-color: #46008c;
   border-radius: 20px;
   padding: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 const CloseDiv = styled.div`

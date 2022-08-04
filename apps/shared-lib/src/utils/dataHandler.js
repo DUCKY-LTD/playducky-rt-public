@@ -133,28 +133,29 @@ export const dataHandler = {
 
     data.map(el => {
       createData(el.TestNo, el.Type, (moment(el['Created Date']).format('MMM DD, YYYY')), el.Status,
-          el['Tested Creatives'], el.DevExperimentComments, el.CTR_number, el.CPI_best)
+          el['Tested Creatives'], el.DevExperimentComments, el.CTR_number, el.CPI_best, el._id)
     })
 
-    function createData(index, type, date, status, creatives, whatsNew, bestCtr, bestCpi) {
-      sortedData.push({ index, type, date, status, creatives, whatsNew, bestCtr, bestCpi }) ;
+    function createData(index, type, date, status, creatives, whatsNew, bestCtr, bestCpi, id) {
+      sortedData.push({ index, type, date, status, creatives, whatsNew, bestCtr, bestCpi, id }) ;
     }
 
     return sortedData.reverse();
   },
 
-  editGame(data){
+  editGame(data, imgUrl){
+
     const {gameTitle, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = data;
 
     let sortedData = {};
     const GamePlayVideoLink = 'Gameplay Video Link';
 
     function createData(GameName, ShortDescription, Description,
-                         GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID) {
+                         GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID, GameIcon) {
       sortedData = {GameName, ShortDescription, Description,
-        GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID} ;
+        GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID, GameIcon} ;
     }
-    createData(gameTitle, shortDescription, fullDescription, gpBundleId, iosBundleId, iosAppId);
+    createData(gameTitle, shortDescription, fullDescription, gpBundleId, iosBundleId, iosAppId, imgUrl);
 
     sortedData['Gameplay Video Link'] = link;
 
@@ -214,5 +215,11 @@ export const dataHandler = {
       LinkToTestedApp: stateData.link,
       Platform: stateData.platform
     };
+  },
+
+  redirectToTestPage(id) {
+    if (id !== '') {
+      return `https://dash.playducky.com/version-test/dashboard/1623250768931x718529467914691200?debug_mode=true&menu=MktTestInfo&MktTestID=${id}`
+    }
   }
 };

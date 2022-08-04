@@ -10,9 +10,10 @@ import ExperimentList from './ExperimentList/ExperimentList';
 import LoadingSpinner from "./Ltv/LoadingSpinner/LoadingSpinner";
 // import defaultImage from 'shared-lib/src/shared/images/default.jpg';
 
-
+const userId = window.userId;
 const gameId = window.gameId;
 // const gameId = "1650488652114x823208019400586600";
+// const userId = "1623250768931x718529467914691200";
 
 const modifyString = (str)=>{
    if (str) return str.slice(0, 10)
@@ -27,6 +28,8 @@ class ProjectPage extends Component {
         editGameData: {},
         editedCpi: {},
         editedCtr: {},
+        userType: {},
+        testRedirectId : '',
         isLoading: false
     }
 
@@ -43,22 +46,26 @@ class ProjectPage extends Component {
                     this.setState({
                         teamData: result
                     })
+                    apiLtv.getProducer(this.state.gameData.DUCKYProducer).then(response => {
+                        const result = response.response;
+                        this.setState({
+                            producerData: result
+                        })
+                            apiLtv.getUserType(userId).then(response => {
+                                const result = response.response;
+                                this.setState({
+                                    userType: result
+                                })
+                                apiLtv.getExperiment(gameId).then(response => {
+                                    const resultExp = dataHandler.getExperiment(response.response.results);
+                                    this.setState({
+                                        experimentData: resultExp
+                                    })
+                                    this.setState(prevState => ({isLoading: !prevState.isLoading}))
+                                })
+                            })
+                    });
                 });
-
-                apiLtv.getProducer(result.DUCKYProducer).then(response => {
-                const result = response.response;
-                this.setState({
-                    producerData: result
-                    })
-                });
-
-                apiLtv.getExperiment(gameId).then(response => {
-                    const result = dataHandler.getExperiment(response.response.results);
-                    this.setState({
-                        experimentData: result
-                    })
-                });
-            this.setState(prevState => ({isLoading: !prevState.isLoading}))
         });
     }
 
@@ -77,10 +84,30 @@ class ProjectPage extends Component {
 
     }
 
+    testRedirectHandler = (id) => {
+        this.setState({testRedirectId: id})
+    }
+
+
     componentDidUpdate(prevProps, prevState) {
-        const {editedCpi, editedCtr} = this.state;
+        const {editedCpi, editedCtr, testRedirectId} = this.state;
 
         if (prevState.editGameData !== this.state.editGameData) {
+
+            if(prevState.editGameData.file !== this.state.editGameData.file) {
+                apiLtv.uploadImg(this.state.editGameData.file).then(response => {
+                    const url = response.data.public_url;
+                    const result = dataHandler.editGame(this.state.editGameData, url);
+                    apiLtv.editGame(gameId, result).then(response => {
+                        apiLtv.getGame(gameId).then((response) => {
+                            const result = response.response;
+                            this.setState({
+                                gameData: result
+                            })
+                        })
+                    });
+                })
+            }
             const result = dataHandler.editGame(this.state.editGameData);
 
             apiLtv.editGame(gameId, result).then(response => {
@@ -91,6 +118,8 @@ class ProjectPage extends Component {
                     })
                 })
             });
+
+
         }
 
         if (prevState.editedCpi !== this.state.editedCpi) {
@@ -118,6 +147,17 @@ class ProjectPage extends Component {
                 })
             })
         }
+
+        if (prevState.testRedirectId !== this.state.testRedirectId){
+            const link = dataHandler.redirectToTestPage(testRedirectId);
+
+            if (link !== undefined) {
+                console.log(link)
+                window.location.assign(link)
+            }
+
+            this.setState(prevState => ({testRedirectId: ''}))
+        }
     }
 
     render() {
@@ -126,6 +166,8 @@ class ProjectPage extends Component {
         const modifiedDate = this.state.gameData['Modified Date'];
         const {TeamName} = this.state.teamData;
         const {FullName} = this.state.producerData;
+        // const {UserTypeText} = this.state.userType;
+
 
         return (
             <div className={styles.container}>
@@ -156,10 +198,11 @@ class ProjectPage extends Component {
 
                                             />
                                         </li>
-                                        <li>
-                                            <TransitionsModal btnName={'DELETE GAME'} btnBgColor={'#d90000'} gameName={GameName} type={'delete'}
-                                                              modalWidth={410}/>
-                                        </li>
+                                        {/*{(UserTypeText === 'Producer' || UserTypeText === 'Admin') &&*/}
+                                        {/*   ( <li>*/}
+                                        {/*    <TransitionsModal btnName={'DELETE GAME'} btnBgColor={'#d90000'} gameName={GameName} type={'delete'}*/}
+                                        {/*                      modalWidth={410} />*/}
+                                        {/*</li>)}*/}
                                         <li>
                                             <a href="https://www.notion.so/playducky/61923c2f4c9846d78ea39eb61a18a1df?v=005720ff02b14720ad3450395bcfd929" target='_blank'
                                                rel="noopener noreferrer">
@@ -173,7 +216,7 @@ class ProjectPage extends Component {
                             </div>
                         </div>
                         <TabsPanel ltv={ <Ltv/> } gameName={GameName} handleCpiTest={this.handleCpiTest} handleCtrTest={this.handleCtrTest}
-                                   experimentList={ <ExperimentList data={this.state.experimentData} /> }
+                                   experimentList={ <ExperimentList data={this.state.experimentData} testRedirectHandler={this.testRedirectHandler} /> }
                         />
                     </>
                 }

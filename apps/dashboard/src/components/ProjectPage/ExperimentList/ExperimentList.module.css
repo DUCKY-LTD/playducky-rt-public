@@ -20,23 +20,23 @@
 }
 
 .ready{
-    cursor: default;
+    cursor: pointer;
     color: #00B41AFF;
 }
 
 .running{
 
-    cursor: default;
+    cursor: pointer;
     color: #1C34B6CC;
 }
 
 .rejected{
-    cursor: default;
+    cursor: pointer;
     color: #F52727CC;
 }
 
 .waiting{
-    cursor: default;
+    cursor: pointer;
     color: #D19513FF;
 }
 
@@ -46,4 +46,11 @@
 
 .link:hover {
     text-decoration: underline;
+}
+
+.altText {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    border: 1px solid #dfe4eb;
 }

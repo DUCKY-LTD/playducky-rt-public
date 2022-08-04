@@ -55,6 +55,14 @@ export const apiLtv = {
             });
     },
 
+    getUserType(id){
+        return gameInst.get(`User/${id}`)
+            .then((response) => response.data)
+            .catch((error) => {
+                console.log("error :", error);
+            });
+    },
+
     getTeam(teamId) {
         return gameInst
             .get(`team/${teamId}`
@@ -127,6 +135,18 @@ export const apiLtv = {
             .catch((error) => {
                 console.log("error :", error);
             });
+    },
+
+    uploadImg(img) {
+        return ltvInst
+            .post('img/upload', {file: img}, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }})
+            .then(response => response)
+            .catch((error) => {
+                console.log("error :", error);
+            });
     }
 };
 
@@ -135,8 +155,8 @@ export const apiLtv = {
 // const ltvInst = axios.create({
 //     baseURL: "https://api.playducky.com/node/",
 //     headers: {
-//         user_id: '1635938197686x803017063599902300',
-//         hash: 'a9241b6c8c9d8d8cbf104f2f00db62f155bab79971433bd2e6b3f03f67919a0b',
+//         user_id: '1623250768931x718529467914691200',
+//         hash: '9259bf8cedf6376d2d862bab4c210ab607c0f2062da94db41583a658a1e3837e',
 //     },
 // });
 //
@@ -154,8 +174,8 @@ export const apiLtv = {
 //         Authorization: `Bearer ${token}`
 //     },
 // });
-//
-//
+
+
 // export const apiLtv = {
 //     getLtv(from, to, options) {
 //         return ltvInst
@@ -179,6 +199,14 @@ export const apiLtv = {
 //         return gameInst
 //             .get(`game/${gameId}`
 //             )
+//             .then((response) => response.data)
+//             .catch((error) => {
+//                 console.log("error :", error);
+//             });
+//     },
+//
+//     getUserType(id){
+//         return gameInst.get(`User/${id}`)
 //             .then((response) => response.data)
 //             .catch((error) => {
 //                 console.log("error :", error);
@@ -253,6 +281,18 @@ export const apiLtv = {
 //     triggerCpiWf(id){
 //         return wfInst
 //             .post('on_cpi_test_create', {id})
+//             .then(response => response)
+//             .catch((error) => {
+//                 console.log("error :", error);
+//             });
+//     },
+//
+//     uploadImg(img) {
+//         return ltvInst
+//             .post('img/upload', {file: img}, {
+//                 headers: {
+//                     "Content-Type": "multipart/form-data",
+//                 }})
 //             .then(response => response)
 //             .catch((error) => {
 //                 console.log("error :", error);
