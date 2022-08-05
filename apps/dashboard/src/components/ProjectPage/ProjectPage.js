@@ -12,7 +12,7 @@ import LoadingSpinner from "./Ltv/LoadingSpinner/LoadingSpinner";
 
 const userId = window.userId;
 const gameId = window.gameId;
-// const gameId = "1650488652114x823208019400586600";
+// const gameId = "1650552170075x873725647565619200";
 // const userId = "1623250768931x718529467914691200";
 
 const modifyString = (str)=>{
@@ -149,7 +149,7 @@ class ProjectPage extends Component {
         }
 
         if (prevState.testRedirectId !== this.state.testRedirectId){
-            const link = dataHandler.redirectToTestPage(testRedirectId);
+            const link = dataHandler.redirectToTestPage(userId, testRedirectId);
 
             if (link !== undefined) {
                 console.log(link)

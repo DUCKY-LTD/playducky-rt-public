@@ -27,6 +27,7 @@ const wfInst = axios.create({
 });
 
 export const apiLtv = {
+
     getLtv(from, to, options) {
         return ltvInst
             .get(
@@ -160,7 +161,7 @@ export const apiLtv = {
 //     },
 // });
 //
-//
+
 // const gameInst = axios.create({
 //     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
 //     headers: {
@@ -174,8 +175,8 @@ export const apiLtv = {
 //         Authorization: `Bearer ${token}`
 //     },
 // });
-
-
+//
+//
 // export const apiLtv = {
 //     getLtv(from, to, options) {
 //         return ltvInst

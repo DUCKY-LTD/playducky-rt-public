@@ -217,9 +217,27 @@ export const dataHandler = {
     };
   },
 
-  redirectToTestPage(id) {
-    if (id !== '') {
-      return `https://dash.playducky.com/version-test/dashboard/1623250768931x718529467914691200?debug_mode=true&menu=MktTestInfo&MktTestID=${id}`
-    }
+  redirectToTestPage(userId, testId) {
+    const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
+
+     if(testId){
+         if (url) {
+             return (
+                 "https://dash.playducky.com/" +
+                 url[1] +
+                 "/dashboard/" +
+                 userId +
+                 "?debug_mode=true&menu=MktTestInfo&MktTestID=" +
+                 testId
+             );
+         } else {
+           return (
+               "https://dash.playducky.com/dashboard/" +
+               userId +
+               "?menu=MktTestInfo&MktTestID=" +
+               testId
+           );
+       }
+     }
   }
 };

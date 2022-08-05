@@ -29,7 +29,8 @@ class Ltv extends Component {
             gpStatus: true
         },
         sortedData: [],
-        isLoading: false
+        isLoading: false,
+        error: false
     }
 
     componentDidMount() {
@@ -44,7 +45,10 @@ class Ltv extends Component {
                 sortedData: result
             });
             this.setState(prevState => ({isLoading: !prevState.isLoading}))
-        });
+        }).catch(error => {
+            this.setState(prevState => ({isLoading: !prevState.isLoading}))
+            this.setState({error: true})
+        })
     }
 
      dateRangeHandler = (from, to) => {

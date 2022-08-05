@@ -51,7 +51,6 @@ const TabsList = styled(TabsListUnstyled)`
 const Container = ({children}) => <div className={styles.container}>{children}</div>;
 
  function TabsPanel({ltv, experimentList, gameName, handleCtrTest, handleCpiTest}) {
-     // console.log(isExperimentDataChanged)
 
      return (
         <TabsUnstyled defaultValue={0}>
