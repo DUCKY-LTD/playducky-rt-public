@@ -152,7 +152,7 @@ class ProjectPage extends Component {
             const link = dataHandler.redirectToTestPage(userId, testRedirectId);
 
             if (link !== undefined) {
-                console.log(link)
+                console.log(link);
                 window.location.assign(link)
             }
 

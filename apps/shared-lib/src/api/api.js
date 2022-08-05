@@ -26,7 +26,6 @@ const wfInst = axios.create({
     // },
 });
 
-// api
 export const apiLtv = {
 
     getLtv(from, to, options) {
