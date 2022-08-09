@@ -13,7 +13,7 @@ function PlatformSelector ({gpStatus, iosStatus, platformHandler}){
                         checked={iosStatus}
                         onChange={platformHandler}
                     />
-                    IOS
+                    {' '}IOS
                 </label>
                 <label className={styles.text}>
                     <input
@@ -22,7 +22,7 @@ function PlatformSelector ({gpStatus, iosStatus, platformHandler}){
                         checked={gpStatus}
                         onChange={platformHandler}
                     />
-                    Android
+                    {' '}Android
                 </label>
             </form>
         </div>

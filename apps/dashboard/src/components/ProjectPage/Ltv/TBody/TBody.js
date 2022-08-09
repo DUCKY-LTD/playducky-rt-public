@@ -21,7 +21,7 @@ function TBody({ sortedData }) {
       {sortedData.map((el, idx) => {
         return (
           <tr key={el.install_day} >
-            <td style={{width:"220px"}} className={styles.cell}>
+            <td className={styles.cell}>
               {el.install_day}
             </td>
             <td className={styles.cell}>{el.cpi}</td>

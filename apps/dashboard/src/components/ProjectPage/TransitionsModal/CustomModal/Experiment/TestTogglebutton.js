@@ -7,7 +7,7 @@ const btnStyle = {
     width: "100px",
     color: "#46008c",
     border: "1px solid #46008c",
-    marginBottom: "20px",
+    marginBottom: "10px",
 };
 
 

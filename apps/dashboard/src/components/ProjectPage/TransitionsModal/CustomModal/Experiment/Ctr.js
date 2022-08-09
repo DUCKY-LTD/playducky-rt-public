@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import s from "./Experiment.module.css";
-import {dataHandler} from "shared-lib/src/utils/dataHandler";
-import {apiLtv} from "shared-lib/src/api/api";
+
 
 const INITIAL_STATE = {
     creatives: '',
@@ -50,7 +49,7 @@ export default class Ctr extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <label style={{marginBottom: "10px"}} className={s.label} htmlFor="creatives_ctr">
+                    <label style={{marginBottom: "5px"}} className={s.label} htmlFor="creatives_ctr">
                         Creatives for test
                     </label>
                     <p className={s.ctr_explanation}>
@@ -62,7 +61,7 @@ export default class Ctr extends Component {
                         5. Please check that access to google drive is open to everyone
                     </p>
                         <input
-                            style={{marginBottom: "20px"}}
+                            style={{marginBottom: "5px"}}
                             id="creatives_ctr"
                             className={s.input}
                             type="text"
@@ -71,7 +70,7 @@ export default class Ctr extends Component {
                             value={creatives}
                             onChange={this.handleChange}
                         />
-                    <label className={s.label} style={{marginBottom: "15px"}} htmlFor="ctr_description">
+                    <label className={s.label} style={{marginBottom: "5px"}} htmlFor="ctr_description">
                         What's new in this videos? (What did you change?)
                     </label>
                         <textarea

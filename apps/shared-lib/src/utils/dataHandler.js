@@ -220,6 +220,9 @@ export const dataHandler = {
   redirectToTestPage(userId, testId) {
     const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
 
+
+    console.log(testId)
+
      if(testId){
          if (url) {
              return (
@@ -239,5 +242,15 @@ export const dataHandler = {
            );
        }
      }
+  },
+
+  modifyNotionId (NotionId) {
+    if (NotionId){
+      let result = '';
+      for (let letter of NotionId) {
+        if(letter !== '-') result += letter
+      }
+      return `https://www.notion.so/playducky/61923c2f4c9846d78ea39eb61a18a1df?v=005720ff02b14720ad3450395bcfd929&p=${result}&pm=s`
+    } else return NotionId
   }
 };

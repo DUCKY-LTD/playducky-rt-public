@@ -12,12 +12,14 @@ import LoadingSpinner from "./Ltv/LoadingSpinner/LoadingSpinner";
 
 const userId = window.userId;
 const gameId = window.gameId;
-// const gameId = "1650552170075x873725647565619200";
+// const gameId = "1650488652114x823208019400586600";
 // const userId = "1623250768931x718529467914691200";
 
 const modifyString = (str)=>{
    if (str) return str.slice(0, 10)
 }
+
+
 
 class ProjectPage extends Component {
     state = {
@@ -30,6 +32,7 @@ class ProjectPage extends Component {
         editedCtr: {},
         userType: {},
         testRedirectId : '',
+        notionLink: null,
         isLoading: false
     }
 
@@ -38,8 +41,10 @@ class ProjectPage extends Component {
 
         apiLtv.getGame(gameId).then((response) => {
             const result = response.response;
+            const link = dataHandler.modifyNotionId(result.NotionID);
             this.setState({
-                gameData: result
+                gameData: result,
+                notionLink: link
             })
                 apiLtv.getTeam(result.DevelopmentTeam).then((response) => {
                     const result = response.response;
@@ -166,8 +171,7 @@ class ProjectPage extends Component {
         const modifiedDate = this.state.gameData['Modified Date'];
         const {TeamName} = this.state.teamData;
         const {FullName} = this.state.producerData;
-        // const {UserTypeText} = this.state.userType;
-
+        const {UserTypeText} = this.state.userType;
 
         return (
             <div className={styles.container}>
@@ -179,7 +183,7 @@ class ProjectPage extends Component {
                                 <h1 className={styles.title}>{GameName}</h1>
                                 <h2 className={styles.team}>By {TeamName} Team</h2>
                                 <div className={styles.cardInfo}>
-                                    <p>Released Platforms</p>
+                                    {/*<p>Released Platforms</p>*/}
                                     <p>Last update {modifyString(modifiedDate)}</p>
                                 </div>
                             </div>
@@ -203,13 +207,14 @@ class ProjectPage extends Component {
                                         {/*    <TransitionsModal btnName={'DELETE GAME'} btnBgColor={'#d90000'} gameName={GameName} type={'delete'}*/}
                                         {/*                      modalWidth={410} />*/}
                                         {/*</li>)}*/}
-                                        <li>
-                                            <a href="https://www.notion.so/playducky/61923c2f4c9846d78ea39eb61a18a1df?v=005720ff02b14720ad3450395bcfd929" target='_blank'
-                                               rel="noopener noreferrer">
+                                        <li> {((UserTypeText === 'Producer' || UserTypeText === 'Admin') && this.state.notionLink) &&
+                                            (<a href={this.state.notionLink} target="_blank"
+                                                rel="noopener noreferrer">
                                                 <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1638797149646x236744111126793600%2FNotion_app_logo.png?w=64&h=64&auto=compress&fit=crop&dpr=1"
                                                      alt="notion_logo" width={45} height={45}/>
                                                 <p>Project page</p>
-                                            </a>
+                                            </a>)
+                                        }
                                         </li>
                                     </ul>
                                 </div>
@@ -221,8 +226,6 @@ class ProjectPage extends Component {
                     </>
                 }
             </div>
-
-            // <div className={styles.test}>TEST</div>
         );
     }
 }

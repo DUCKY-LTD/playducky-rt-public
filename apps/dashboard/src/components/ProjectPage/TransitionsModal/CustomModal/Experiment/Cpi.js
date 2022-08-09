@@ -63,12 +63,12 @@ const makeActiveButton = (isDisabled) => {
 
         return (
             <div>
-                <div style={{marginBottom: "10px"}}>
+                <div style={{marginBottom: "5px"}}>
                     <p className={s.label}>Game name</p>
                     <p className={s.input}>{gameName}</p>
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                   <div style={{marginBottom: "10px"}}>
+                   <div style={{marginBottom: "5px"}}>
                        <label className={s.label} htmlFor="creatives">
                            Creatives for test
                        </label>
@@ -82,7 +82,7 @@ const makeActiveButton = (isDisabled) => {
                            onChange={this.handleChange}
                        />
                    </div>
-                    <div style={{marginBottom: "10px"}}>
+                    <div style={{marginBottom: "5px"}}>
                         <label className={s.label} htmlFor="link">
                             Tested App Link
                         </label>

@@ -14,16 +14,10 @@ const ltvInst = axios.create({
 
 const gameInst = axios.create({
     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
-    // headers: {
-    //     Authorization: `Bearer ${token}`
-    // },
 });
 
 const wfInst = axios.create({
     baseURL: "https://playducky.bubbleapps.io/version-kucher-dev/api/1.1/wf/",
-    // headers: {
-    //     Authorization: `Bearer ${token}`
-    // },
 });
 
 export const apiLtv = {
@@ -161,7 +155,7 @@ export const apiLtv = {
 //     },
 // });
 //
-
+//
 // const gameInst = axios.create({
 //     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
 //     headers: {

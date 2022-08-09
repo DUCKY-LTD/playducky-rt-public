@@ -47,7 +47,7 @@ class Ltv extends Component {
             this.setState(prevState => ({isLoading: !prevState.isLoading}))
         }).catch(error => {
             this.setState(prevState => ({isLoading: !prevState.isLoading}))
-            this.setState({error: true})
+            this.setState(prevState => ({error: !prevState.error}))
         })
     }
 
@@ -135,7 +135,7 @@ class Ltv extends Component {
         const {isLoading, sortedData, params} = this.state;
 
         return (
-             <div className={styles.container}>
+             <div>
             <FilterBar dateRangeHandler={this.dateRangeHandler} countryHandler={this.countryHandler}
             platformHandler={this.platformHandler} iosStatus={params.iosStatus} gpStatus={params.gpStatus}/>
                  {isLoading ? <LoadingSpinner/> :

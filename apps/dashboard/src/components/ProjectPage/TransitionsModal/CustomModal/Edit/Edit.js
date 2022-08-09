@@ -11,7 +11,8 @@ export default class Edit extends Component {
         gpBundleId: this.props.gpBundleId,
         iosBundleId: this.props.iosBundleId,
         iosAppId: this.props.iosAppId,
-        file: undefined
+        file: undefined,
+        preview: null
     }
 
 
@@ -23,9 +24,14 @@ export default class Edit extends Component {
 
     handleImg = ({target}) => {
 
-        let img = target.files[0]
+        let img = target.files[0];
+        let preview = URL.createObjectURL(img);
+        console.log(preview)
 
-        this.setState({file: img})
+        this.setState({
+            file: img,
+            preview: preview
+        })
     }
 
     handleSubmit = evt => {
@@ -38,6 +44,8 @@ export default class Edit extends Component {
         const {immutableTitle, gameTitle, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = this.state;
         const {handleClose} = this.props;
 
+        console.log(this.state.preview)
+
 
         return(
             <>
@@ -45,7 +53,7 @@ export default class Edit extends Component {
                     <h2 className={s.title}>Edit {immutableTitle} Info</h2>
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                    <div className={s.float_div} style={{marginBottom: "26px"}}>
+                    <div className={s.float_div} style={{marginBottom: "5px"}}>
                         <label className={s.float_label} htmlFor="game_title">GAME NAME:</label>
                             <input
                                 className={s.input}
@@ -56,7 +64,7 @@ export default class Edit extends Component {
                                 onChange={this.handleChange}
                             />
                     </div>
-                    <div style={{marginBottom: "10px"}}>
+                    <div style={{marginBottom: "5px"}}>
                         <label className={s.label}  htmlFor="short_description">
                             Short Description
                         </label>
@@ -69,7 +77,7 @@ export default class Edit extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div style={{marginBottom: "10px"}}>
+                    <div style={{marginBottom: "5px"}}>
                         <label className={s.label} htmlFor="full_description">
                             Full Description
                         </label>
@@ -82,7 +90,7 @@ export default class Edit extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div style={{marginBottom: "10px"}}>
+                    <div style={{marginBottom: "5px"}}>
                         <label className={s.label} htmlFor="gameplay_link">
                             Gameplay Video Link (for stores)
                         </label>
@@ -97,8 +105,11 @@ export default class Edit extends Component {
                     </div>
                     <div className={s.upload_container}>
                         <div className={s.img_input_container}>
-                            <input className={s.img_input} multiple={false} type="file" name="upload" id="upload" onChange={this.handleImg}/>
-                            <label className={s.img_input_label} htmlFor="upload">Click to upload Game Logo</label>
+                            {this.state.preview ?  <img src={this.state.preview} alt="preview img" width="100%" height="100%"/>:
+                                <>
+                                    <input className={s.img_input} multiple={false} type="file" name="upload" id="upload" onChange={this.handleImg}/>
+                                    <label className={s.img_input_label} htmlFor="upload">Click to upload Game Logo</label>
+                                </>}
                         </div>
                         <div>
                             <ul>
@@ -146,6 +157,7 @@ export default class Edit extends Component {
                     </div>
                     <button className={s.button} type='submit' onClick={handleClose}>Save</button>
                 </form>
+
             </>
         )
     }

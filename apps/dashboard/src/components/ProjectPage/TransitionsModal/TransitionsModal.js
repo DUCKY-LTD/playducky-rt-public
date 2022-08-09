@@ -50,7 +50,7 @@ const style = (width) => ({
     backgroundColor: 'white',
     borderRadius: '20px',
     boxShadow: 24,
-    padding: '30px 27px 30px 27px',
+    padding: '10px 17px 10px 17px',
 });
 
 
