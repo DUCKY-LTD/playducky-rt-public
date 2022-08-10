@@ -44,9 +44,6 @@ export default class Edit extends Component {
         const {immutableTitle, gameTitle, shortDescription, fullDescription, link, gpBundleId, iosBundleId, iosAppId} = this.state;
         const {handleClose} = this.props;
 
-        console.log(this.state.preview)
-
-
         return(
             <>
                 <div className={s.title_div}>

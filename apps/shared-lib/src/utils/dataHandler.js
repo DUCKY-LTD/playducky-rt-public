@@ -220,9 +220,6 @@ export const dataHandler = {
   redirectToTestPage(userId, testId) {
     const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
 
-
-    console.log(testId)
-
      if(testId){
          if (url) {
              return (

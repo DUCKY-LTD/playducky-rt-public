@@ -2,23 +2,17 @@ import React, {Component} from 'react';
 import styles from './ProjectPage.module.css';
 import {apiLtv} from 'shared-lib/src/api/api';
 import {dataHandler} from "shared-lib/src/utils/dataHandler";
-import StaffCard from "./StaffCard/StaffCard";
+import Main from "./Main/Main";
 import TabsPanel from "./TabsPanel/TabsPanel";
 import Ltv from "./Ltv/Ltv";
-import TransitionsModal from './TransitionsModal/TransitionsModal';
 import ExperimentList from './ExperimentList/ExperimentList';
 import LoadingSpinner from "./Ltv/LoadingSpinner/LoadingSpinner";
-// import defaultImage from 'shared-lib/src/shared/images/default.jpg';
+
 
 const userId = window.userId;
 const gameId = window.gameId;
-// const gameId = "1650552170075x873725647565619200";
+// const gameId = "1650488652114x823208019400586600";
 // const userId = "1623250768931x718529467914691200";
-
-const modifyString = (str)=>{
-   if (str) return str.slice(0, 10)
-}
-
 
 
 class ProjectPage extends Component {
@@ -166,61 +160,14 @@ class ProjectPage extends Component {
     }
 
     render() {
-        const {GameIcon, GameName, ShortDescription, Description,
-             GPStoreBundleID, iOsStoreBundleID, iOsStoreAppID } = this.state.gameData;
-        const modifiedDate = this.state.gameData['Modified Date'];
-        const {TeamName} = this.state.teamData;
-        const {FullName} = this.state.producerData;
-        const {UserTypeText} = this.state.userType;
 
         return (
             <div className={styles.container}>
                 {this.state.isLoading ? <LoadingSpinner/> :
-                    <>
-                        <div className={styles.card}>
-                            <img className={styles.img} src={GameIcon} alt="project_icon" />
-                            <div>
-                                <h1 className={styles.title}>{GameName}</h1>
-                                <h2 className={styles.team}>By {TeamName} Team</h2>
-                                <div className={styles.cardInfo}>
-                                    {/*<p>Released Platforms</p>*/}
-                                    <p>Last update {modifyString(modifiedDate)}</p>
-                                </div>
-                            </div>
-                            <div className={styles.editBlock}>
-                                <StaffCard title={'Producer'} name={FullName}/>
-                                {/*<StaffCard title={'Marketing'} name={'Not assigned'}/>*/}
-                                <div>
-                                    <ul style={{listStyle: "none"}}>
-                                        <li>
-                                            <TransitionsModal btnName={'EDIT GAME'} btnBgColor={'#ed652b'} type={'edit'}
-                                                              editGameHandler={this.editGameHandler} modalWidth={630}
-                                                              gameName={GameName} shortDescription={ShortDescription}
-                                                              fullDescription={Description} link={this.state.gameData['Gameplay Video Link']}
-                                                              gpBundleId={GPStoreBundleID} iosBundleId={iOsStoreBundleID}
-                                                              iosAppId={iOsStoreAppID}
-
-                                            />
-                                        </li>
-                                        {/*{(UserTypeText === 'Producer' || UserTypeText === 'Admin') &&*/}
-                                        {/*   ( <li>*/}
-                                        {/*    <TransitionsModal btnName={'DELETE GAME'} btnBgColor={'#d90000'} gameName={GameName} type={'delete'}*/}
-                                        {/*                      modalWidth={410} />*/}
-                                        {/*</li>)}*/}
-                                        <li> {((UserTypeText === 'Producer' || UserTypeText === 'Admin') && this.state.notionLink) &&
-                                            (<a href={this.state.notionLink} target="_blank"
-                                                rel="noopener noreferrer">
-                                                <img src="https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2Fs3.amazonaws.com%2Fappforest_uf%2Ff1638797149646x236744111126793600%2FNotion_app_logo.png?w=64&h=64&auto=compress&fit=crop&dpr=1"
-                                                     alt="notion_logo" width={45} height={45}/>
-                                                <p>Project page</p>
-                                            </a>)
-                                        }
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <TabsPanel ltv={ <Ltv/> } gameName={GameName} handleCpiTest={this.handleCpiTest} handleCtrTest={this.handleCtrTest}
+                    <>  <Main gameData={this.state.gameData} teamData={this.state.teamData} editGameHandler={this.editGameHandler} gameIcon={this.state.gameData.GameIcon}
+                            producerData={this.state.producerData} userType={this.state.userType} notionLink={this.state.notionLink}
+                        />
+                        <TabsPanel ltv={ <Ltv/> } gameName={this.state.gameData.GameName} handleCpiTest={this.handleCpiTest} handleCtrTest={this.handleCtrTest}
                                    experimentList={ <ExperimentList data={this.state.experimentData} testRedirectHandler={this.testRedirectHandler} /> }
                         />
                     </>

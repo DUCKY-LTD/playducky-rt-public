@@ -3,6 +3,16 @@ import axios from "axios";
 const authHash = window.authHash;
 const userId = window.userId;
 
+const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
+
+function makeApiEndpoint() {
+    if (url) {
+        return "/" + url[1];
+    } else {
+        return "";
+    }
+}
+
 const ltvInst = axios.create({
     baseURL: "https://api.playducky.com/node/",
     headers: {
@@ -11,13 +21,12 @@ const ltvInst = axios.create({
     },
 });
 
-
 const gameInst = axios.create({
-    baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
+    baseURL: `https://dash.playducky.com${makeApiEndpoint()}/api/1.1/obj/`,
 });
 
 const wfInst = axios.create({
-    baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/wf",
+    baseURL: `https://dash.playducky.com${makeApiEndpoint()}/api/1.1/wf`,
 });
 
 export const apiLtv = {
@@ -145,7 +154,8 @@ export const apiLtv = {
     }
 };
 
-// static api for debug
+//  api for debug
+
 
 // const ltvInst = axios.create({
 //     baseURL: "https://api.playducky.com/node/",
@@ -155,7 +165,7 @@ export const apiLtv = {
 //     },
 // });
 //
-//
+// const token = '809078eb6595b6c602a11f8aa805d2c4';
 // const gameInst = axios.create({
 //     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
 //     headers: {
@@ -164,7 +174,7 @@ export const apiLtv = {
 // });
 //
 // const wfInst = axios.create({
-//     baseURL: "https://playducky.bubbleapps.io/version-kucher-dev/api/1.1/wf/",
+//     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/wf",
 //     headers: {
 //         Authorization: `Bearer ${token}`
 //     },
