@@ -12,7 +12,7 @@ import LoadingSpinner from "./Ltv/LoadingSpinner/LoadingSpinner";
 
 const userId = window.userId;
 const gameId = window.gameId;
-// const gameId = "1650488652114x823208019400586600";
+// const gameId = "1650552170075x873725647565619200";
 // const userId = "1623250768931x718529467914691200";
 
 const modifyString = (str)=>{
@@ -178,7 +178,7 @@ class ProjectPage extends Component {
                 {this.state.isLoading ? <LoadingSpinner/> :
                     <>
                         <div className={styles.card}>
-                            <img className={styles.img} src={GameIcon} alt="project_icon" width={135} height={135}/>
+                            <img className={styles.img} src={GameIcon} alt="project_icon" />
                             <div>
                                 <h1 className={styles.title}>{GameName}</h1>
                                 <h2 className={styles.team}>By {TeamName} Team</h2>

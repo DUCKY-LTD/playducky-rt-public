@@ -17,7 +17,7 @@ const gameInst = axios.create({
 });
 
 const wfInst = axios.create({
-    baseURL: "https://playducky.bubbleapps.io/version-kucher-dev/api/1.1/wf/",
+    baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/wf",
 });
 
 export const apiLtv = {

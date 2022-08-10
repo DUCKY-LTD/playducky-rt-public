@@ -74,24 +74,24 @@ export default function ExperimentList({data, testRedirectHandler}) {
                         </TableHead>
                         <TableBody sx={{cursor: 'pointer'}}>
                             {data.map(({index, type, date, status, creatives, whatsNew, bestCtr, bestCpi, id}, idx) => (
-                                <TableRow key={idx} onClick={() => testRedirectHandler(id)}>
-                                    <StyledTableCell component="th" scope="row">
+                                <TableRow key={idx}>
+                                    <StyledTableCell component="th" scope="row" onClick={() => testRedirectHandler(id)}>
                                         {index}
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>
                                         <span className={makeColorType(type)}>{type}</span>
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">{date}</StyledTableCell>
-                                    <StyledTableCell align="right">
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>{date}</StyledTableCell>
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>
                                         <span className={makeColorStatus(status)}>{status.toUpperCase()}</span>
                                     </StyledTableCell>
                                     <StyledTableCell align="right">
                                         <a className={styles.link} href={creatives} target='_blank'
                                            rel="noopener noreferrer">CREATIVES</a>
                                     </StyledTableCell>
-                                    <StyledTableCell align="right">{whatsNew}</StyledTableCell>
-                                    <StyledTableCell align="right">{bestCtr ? (`${bestCtr}%`): '-'}</StyledTableCell>
-                                    <StyledTableCell align="right">{bestCpi ? (`$${bestCpi}`):'-'}</StyledTableCell>
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>{whatsNew}</StyledTableCell>
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>{bestCtr ? (`${bestCtr}%`): '-'}</StyledTableCell>
+                                    <StyledTableCell align="right" onClick={() => testRedirectHandler(id)}>{bestCpi ? (`$${bestCpi}`):'-'}</StyledTableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
