@@ -8,7 +8,8 @@ function TFooter({ sortedData }) {
   return (
     <tfoot className={styles.tFooter}>
       <tr>
-        <td colSpan={2}></td>
+        <td colSpan={1}></td>
+        <td>{summary.averageCpi}</td>
         <td>{summary.installs}</td>
         <td>{summary.wA.d0}</td>
         <td>{summary.wA.d3}</td>

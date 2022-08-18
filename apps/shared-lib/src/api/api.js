@@ -12,7 +12,7 @@ function makeApiEndpoint() {
         return "";
     }
 }
-
+//
 const ltvInst = axios.create({
     baseURL: "https://api.playducky.com/node/",
     headers: {
@@ -165,7 +165,7 @@ export const apiLtv = {
 //     },
 // });
 //
-// const token = '809078eb6595b6c602a11f8aa805d2c4';
+// const token =
 // const gameInst = axios.create({
 //     baseURL: "https://dash.playducky.com/version-kucher-dev/api/1.1/obj/",
 //     headers: {

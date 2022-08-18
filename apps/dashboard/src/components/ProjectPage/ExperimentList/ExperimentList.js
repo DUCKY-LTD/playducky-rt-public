@@ -44,6 +44,9 @@ const makeColorType = (type) => {
     if (type === 'CPI') {
         return styles.cpi
     }
+    if (type === 'CPI+Ret') {
+        return styles.cpi
+    }
     if (type === 'CTR') {
         return styles.ctr
     }

@@ -85,13 +85,23 @@ export const dataHandler = {
   },
 
   getWeightedAverage(data) {
+
     const sumInstalls = [];
     const dayVertical = {};
+    const cpi = [];
 
     data.forEach((el) => {
       for (const key in el) {
         if (key.includes("installs")) {
           sumInstalls.push(el[key]);
+        }
+      }
+    });
+
+    data.forEach((el) => {
+      for (const key in el) {
+        if (key.includes("cpi")) {
+          cpi.push(+el[key]);
         }
       }
     });
@@ -107,11 +117,18 @@ export const dataHandler = {
       }
     });
 
+
+
     // средневзвешенное арифметическое d0-d90, cумма installs
     const totalInstalls = sumInstalls.reduce(
       (sum, current) => sum + current,
       0
     );
+
+    const averageCpi = (
+        cpi.reduce((sum, current) => sum + current, 0) / cpi.length
+    ).toFixed(3);
+
 
     function doWeightedAverage(day) {
       return (
@@ -125,6 +142,7 @@ export const dataHandler = {
     return {
       installs: totalInstalls,
       wA: dayVertical,
+      averageCpi
     };
   },
 
@@ -206,7 +224,8 @@ export const dataHandler = {
 
     return {
       'GameID': gameId,
-      Type: 'CPI',
+      Type: 'CPI+Ret',
+      'Test Type': '1659977640390x603475473865946500',
       TestNo: createNextIndex(),
       'Tested Creatives': stateData.creatives,
       Status: 'Waiting for approval',
