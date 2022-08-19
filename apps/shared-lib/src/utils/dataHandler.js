@@ -222,10 +222,21 @@ export const dataHandler = {
       }
     }
 
+    const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
+    
+    function makeDiffIdForTestTypes() {
+      if (url) {
+        return '1659977640390x603475473865946500';
+      } else {
+        return '1660918204312x586228926047557900';
+      }
+    }
+
+
     return {
       'GameID': gameId,
       Type: 'CPI+Ret',
-      'Test Type': '1659977640390x603475473865946500',
+      'Test Type': makeDiffIdForTestTypes(),
       TestNo: createNextIndex(),
       'Tested Creatives': stateData.creatives,
       Status: 'Waiting for approval',
