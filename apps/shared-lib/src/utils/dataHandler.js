@@ -223,10 +223,14 @@ export const dataHandler = {
     }
 
     const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
-    
+
     function makeDiffIdForTestTypes() {
       if (url) {
-        return '1659977640390x603475473865946500';
+        if (url[1] === "version-kucher-dev" || url[1] === "version-test") {
+          return '1659977640390x603475473865946500';
+        } else {
+          return '1660918204312x586228926047557900';
+        }
       } else {
         return '1660918204312x586228926047557900';
       }
