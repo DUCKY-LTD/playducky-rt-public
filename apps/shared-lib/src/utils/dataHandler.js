@@ -207,8 +207,15 @@ export const dataHandler = {
     };
   },
 
-  createNewCpiTest(stateData, experimentData, gameId,  teamData){
+  createNewCpiTest(stateData, experimentData, gameId,  teamData, testType){
     const {_id} = teamData;
+    let cpiTestType = '';
+
+    testType.forEach(el => {
+      if (el.Name === 'CPI+Ret') {
+        cpiTestType = el._id
+      }
+    })
 
     function createNextIndex () {
       let currentIndex = 0;
@@ -222,25 +229,10 @@ export const dataHandler = {
       }
     }
 
-    const url = window.location.href.match(/https\:\/\/dash\.playducky\.com\/(.*)\/dashboard\/(.*)/);
-
-    function makeDiffIdForTestTypes() {
-      if (url) {
-        if (url[1] === "version-kucher-dev" || url[1] === "version-test") {
-          return '1659977640390x603475473865946500';
-        } else {
-          return '1660918204312x586228926047557900';
-        }
-      } else {
-        return '1660918204312x586228926047557900';
-      }
-    }
-
-
     return {
       'GameID': gameId,
       Type: 'CPI+Ret',
-      'Test Type': makeDiffIdForTestTypes(),
+      'Test Type': cpiTestType,
       TestNo: createNextIndex(),
       'Tested Creatives': stateData.creatives,
       Status: 'Waiting for approval',

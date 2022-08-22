@@ -27,6 +27,7 @@ class ProjectPage extends Component {
         userType: {},
         testRedirectId : '',
         notionLink: null,
+        testType : null,
         isLoading: false
     }
 
@@ -60,7 +61,12 @@ class ProjectPage extends Component {
                                     this.setState({
                                         experimentData: resultExp
                                     })
-                                    this.setState(prevState => ({isLoading: !prevState.isLoading}))
+                                        apiLtv.getTestTypesId().then(response => {
+                                            this.setState({
+                                                testType: response.response.results
+                                            })
+                                            this.setState(prevState => ({isLoading: !prevState.isLoading}))
+                                        })
                                 })
                             })
                     });
@@ -73,7 +79,7 @@ class ProjectPage extends Component {
     };
 
     handleCpiTest = (data) => {
-        const result = dataHandler.createNewCpiTest(data, this.state.experimentData, gameId, this.state.teamData);
+        const result = dataHandler.createNewCpiTest(data, this.state.experimentData, gameId, this.state.teamData, this.state.testType);
         this.setState({editedCpi: result})
     }
 

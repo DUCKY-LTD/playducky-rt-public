@@ -151,6 +151,15 @@ export const apiLtv = {
             .catch((error) => {
                 console.log("error :", error);
             });
+    },
+
+    getTestTypesId () {
+        return gameInst
+            .get('TestType')
+            .then(response => response.data)
+            .catch((error) => {
+                console.log("error :", error);
+            });
     }
 };
 
@@ -299,6 +308,15 @@ export const apiLtv = {
 //                     "Content-Type": "multipart/form-data",
 //                 }})
 //             .then(response => response)
+//             .catch((error) => {
+//                 console.log("error :", error);
+//             });
+//     },
+//
+//     getTestTypesId () {
+//         return gameInst
+//             .get('TestType')
+//             .then(response => response.data)
 //             .catch((error) => {
 //                 console.log("error :", error);
 //             });
